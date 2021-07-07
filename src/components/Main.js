@@ -24,16 +24,16 @@ function Main(props) {
     //////
 
     const createRoutes = async (route) => {
-        await fetch(URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "Application/json"
-            },
-            body: JSON.stringify(route),
+        
+        await fetch(URL, { 
+          method: "POST", 
+          headers: {
+            "Content-Type": "Application/json", 
+          },
+          body: JSON.stringify(route), 
         });
-        // update state
-        getRoutes();
-    }
+        getRoutes(); 
+      };
 
 
     //////
