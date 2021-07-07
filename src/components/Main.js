@@ -5,7 +5,7 @@ import RouteShow from "../pages/RouteShow";
 
 function Main(props) {
 
-    const [ routeState, setRouteState ] = useState(null);
+    const [ routes, setRoutes ] = useState(null);
 
     const URL = "http://localhost:4000/routes"
 
@@ -16,14 +16,14 @@ function Main(props) {
     const getRoutes = async () => {
         const response = await fetch(URL);
         const data = await response.json();
-        setRouteState(data);
+        setRoutes(data);
     }
 
     //////
     // create
     //////
 
-    const createRoute = async (route) => {
+    const createRoutes = async (route) => {
         await fetch(URL, {
             method: "POST",
             headers: {
@@ -52,7 +52,7 @@ function Main(props) {
         <main>
             <Switch>
                 <Route exact path="/">
-                    <RouteIndex />
+                    <RouteIndex routes={routes} createRoutes={createRoutes}/>
                 </Route>
                 <Route
                     path="/routes/:id"
