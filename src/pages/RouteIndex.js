@@ -1,6 +1,27 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function RouteIndex(props) {
+    // state to hold formData
+    const [ newForm, setNewForm ] = useState({
+        name: "",
+        route_type: "",
+        gym_area: "",
+        hold_color: "",
+        setter_name: "",
+        setter_grade: "",
+        consensus_grade: "",
+        consensus_rating: "",
+        // user_ticks: [userTickSchema],
+        createdBy: "",
+        // { 
+        //     type: Schema.Types.ObjectId,
+        //     ref: 'User'
+        // },
+    });
+
+    // handleChange function for form
+
     // loaded routes function
     const loaded = () => {
         return props.routes.map((route) => (
