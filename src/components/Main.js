@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 import RouteIndex from "../pages/RouteIndex";
 import RouteShow from "../pages/RouteShow";
 
 function Main(props) {
-    const [ ]
     return (
         <main>
             <Switch>
