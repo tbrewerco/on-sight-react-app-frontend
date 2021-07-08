@@ -13,12 +13,6 @@ function RouteIndex(props) {
     setter_grade: "",
     consensus_grade: "",
     consensus_rating: "",
-    // // user_ticks: [userTickSchema],
-    // createdBy: "",
-    // { 
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'User'
-    // },
   });
 
   // handleChange function for form
@@ -38,14 +32,6 @@ function RouteIndex(props) {
       image: "",
       setter_name: "",
       setter_grade: "",
-      // consensus_grade: "",
-      // consensus_rating: "",
-      // user_ticks: [userTickSchema],
-      // createdBy: "",
-      // { 
-      //     type: Schema.Types.ObjectId,
-      //     ref: 'User'
-      // },
     })
   }
 
@@ -55,7 +41,9 @@ function RouteIndex(props) {
       <div key={route._id} className="route">
         <Link to={`/routes/${route._id}`}><h3>{route.name}</h3></Link>
         {/* <img src={route.image} alt={route.name} /> */}
-        <h4>{route.consensusYdsGrade}</h4>
+        <p>Color: {route.hold_color}</p>
+        <p>Grade: {route.consensusYdsGrade}</p>
+        <p>Gym Location: {route.gym_area}</p>
       </div>
     ));
   };
@@ -117,27 +105,7 @@ function RouteIndex(props) {
           placeholder="setter grade"
           onChange={handleChange}
         />
-        {/* <input
-          type="text"
-          value={newForm.consensus_grade}
-          name="consensus_grade"
-          placeholder="consensus grade"
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          value={newForm.consensus_rating}
-          name="consensus_rating"
-          placeholder="consensus rating"
-          onChange={handleChange} */}
-        />
-        {/* <input
-            type="text"
-            value={newForm.createdBy}
-            name="createdBy"
-            placeholder="route added by"
-            onChange={handleChange}
-          /> */}
+
         <input type="submit" value="Create Route" />
       </form>
       {props.routes ? loaded() : loading()}
