@@ -1,14 +1,12 @@
 //////
 // dependencies/imports
 //////
-import { useState } from "react";
-import { Link, Route } from "react-router-dom";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 
 //////
 // pages/components
 //////
-function RouteIndex(props) {
+export default function RouteIndex(props) {
 
   const loaded = () => {
     return (
@@ -37,5 +35,3 @@ function RouteIndex(props) {
     </section>
   );
 }
-
-export default RouteIndex;
