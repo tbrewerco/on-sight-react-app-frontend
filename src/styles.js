@@ -4,6 +4,7 @@ export const StyledLayout = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
 `;
 
 export const StyledMain = styled.main`
@@ -17,22 +18,31 @@ export const StyledMain = styled.main`
     .route {
         display: flex;
         flex-direction: row-reverse;
-        padding-top: 50px;
-        justify-content: center;
+        padding: 50px;
+        justify-content: space-between;
+        align-items: center;
     }
     .routeInfo {
-        Padding: 10px;
+        display: flex;
+        flex-direction: column;
+        Padding: 30px;
+    }
+    .DropDown {
+        display: flex;
+        flex-direction: column;
+        margin: 6rem;
     }
 `;
 
 
 export const StyledHeader = styled.header`
     display: flex;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
     background-color: #000000;
-    color: #ffffff;
+    color: white;
     height: 3rem;
+    justify-items: baseline;
     box-shadow: 1px 1px 3px 1px #808080;
     ul {
         display: flex;
@@ -50,6 +60,9 @@ export const StyledHeader = styled.header`
     }
     h1 {
         padding-left: 1rem;
+    }
+    h2 {
+        font-size:20px;
     }
 `;
 

@@ -15,7 +15,9 @@ The OF version allows climbing gym operators to do the following:
 
 ## Screenshots
 
+
 - ![screenshot](images/landing.png)
+
 
 ## ERD
 

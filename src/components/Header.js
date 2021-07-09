@@ -10,6 +10,7 @@ export default function Header(props) {
             <Link to="/">
                 <h1>On.Sight</h1>
             </Link>
+            <h2>Earth Treks CLimbing and Fitness</h2>
             <nav className="nav">
                 <ul>
                     <li>
