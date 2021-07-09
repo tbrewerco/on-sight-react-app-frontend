@@ -1,7 +1,7 @@
 //////
 // dependencies/imports
 //////
-import { Dropdown, DropdownButton } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
 
 //////
 // pages/components
@@ -16,13 +16,13 @@ export default function RouteIndex(props) {
           <Dropdown.Menu variant="dark">
             {props.routes.map(route => {
               return (
-                <Dropdown.Item href={`/routes/${route._id}`}>{route.name}</Dropdown.Item>
+                <Dropdown.Item key={route.name} href={`/routes/${route._id}`}>{route.name}</Dropdown.Item>
               )
             })}
           </Dropdown.Menu>
         </Dropdown>
       </div>
-    )
+    );
   };
 
   const loading = () => {

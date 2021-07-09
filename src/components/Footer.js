@@ -1,5 +1,12 @@
-function Footer(props) {
-    return <h1>Footer</h1>
-}
+//////
+// dependencies/imports
+//////
+import { StyledFooter } from "../styles";
 
-export default Footer;
+export default function Footer(props) {
+    return (
+        <StyledFooter>
+            <p>Footer &copy; All Rights Reserved {new Date().getFullYear}</p>
+        </StyledFooter>
+    )
+}

@@ -1,34 +1,45 @@
-import { useEffect, useState } from "react";
+//////
+// dependencies/imports
+//////
+import { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
+import { StyledMain } from "../styles";
 import RouteIndex from "../pages/RouteIndex";
 import RouteShow from "../pages/RouteShow";
+import Home from "../pages/Home";
 import yosemiteGrades from "../utils/grades";
 
-function Main(props) {
+export default function Main(props) {
 
     const [routes, setRoutes] = useState(null);
 
-    const URL = "http://localhost:4000/routes"
+    const URL = "https://on-sight-app-backend.herokuapp.com/"
 
     //////
     // get data
     //////
-
     const getRoutes = async () => {
         const response = await fetch(URL);
         let data = await response.json();
         data = data.map(route => {
-            route.consensusYdsGrade = yosemiteGrades[route.consensus_grade] || "unknown"; // error handling w 'or' operator (if a route has a consensus grade, then it will be returned, if it does not, it will be undefined, which is falsey, so "unknown" is returned)...
-            // the .map will need to be done for setter_grade and difficulty_grade...
-            // if route is boulder, use this thing else use yosemite...
-            console.log(route); // 
+            // map over routes data
+            // retrieve the route's numerical consensus_grade value
+            // locate within the yosemiteGrades object an entry whose numerical key matches the numerical consensus_grade
+            // set consensusYdsGrade to the string value from that yosemiteGrades entry  
+            // add consensusYdsGrade to each route object as a new property
+            route.consensusYdsGrade = yosemiteGrades[route.consensus_grade] || "unknown";
+            // in other words, if the route.consensus_grade is '1', it matches with yosemiteGrades.1, which has the value '5.4'
+            ////////////////////////////////////////////
+            // future: convert setter_grade to YDS
+            // future: if route is boulder, use 'this grading system function', else use yosemite...
+            ////////////////////////////////////////////
             return route;
         })
         setRoutes(data);
     }
 
     //////
-    // create
+    // create routes
     //////
 
     const createRoutes = async (route) => {
@@ -43,36 +54,27 @@ function Main(props) {
         getRoutes();
     };
 
-
-    //////
-    // update
-    //////
-
-
-
-    //////
-    // delete
-    //////
-
     useEffect(() => getRoutes(), []); // clean up effect once on mount/ unmount
 
     return (
-        <main>
+        <StyledMain>
             <Switch>
                 <Route exact path="/">
+                    <Home />
+                </Route>
+                <Route exact path="/routes">
                     <RouteIndex routes={routes} createRoutes={createRoutes} />
                 </Route>
                 <Route
                     path="/routes/:id"
                     render={(rp) => (
                         <RouteShow
+                            routes={routes}
                             {...rp}
                         />
                     )}
                 />
             </Switch>
-        </main>
+        </StyledMain>
     )
-}
-
-export default Main;
+};

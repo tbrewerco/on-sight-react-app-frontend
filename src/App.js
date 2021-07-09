@@ -1,15 +1,15 @@
-import "./App.css";
+import { StyledLayout } from "./styles.js";
 import Header from "./components/Header.js"
-import Main from "./components/Main.js"
+import Main from "./components/Main.js";
 import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="App">
+    <StyledLayout>
       <Header />
       <Main />
       <Footer />
-    </div>
+    </StyledLayout>
   );
 }
 
