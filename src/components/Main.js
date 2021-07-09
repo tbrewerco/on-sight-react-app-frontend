@@ -13,7 +13,7 @@ export default function Main(props) {
 
     const [routes, setRoutes] = useState(null);
 
-    const URL = "http://localhost:4000/routes"
+    const URL = "https://on-sight-app-backend.herokuapp.com/routes/"
 
     //////
     // get data
@@ -21,6 +21,7 @@ export default function Main(props) {
     const getRoutes = async () => {
         const response = await fetch(URL);
         let data = await response.json();
+        setRoutes(data);
         data = data.map(route => {
             // map over routes data
             // retrieve the route's numerical consensus_grade value
@@ -35,7 +36,7 @@ export default function Main(props) {
             ////////////////////////////////////////////
             return route;
         })
-        setRoutes(data);
+
     }
 
     //////
