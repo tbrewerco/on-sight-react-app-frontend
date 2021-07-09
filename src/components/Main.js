@@ -13,7 +13,7 @@ export default function Main(props) {
 
     const [routes, setRoutes] = useState(null);
 
-    const URL = "https://on-sight-app-backend.herokuapp.com/"
+    const URL = "http://localhost:4000/routes"
 
     //////
     // get data
