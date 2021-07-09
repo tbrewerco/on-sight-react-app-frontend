@@ -25,13 +25,15 @@ function RouteShow({ match, routes }) {
 
         return (
             <div className="route">
-                <h1>{route.name}</h1>
-                <h3>{route.consensusYdsGrade}</h3>
-                <p>Color: {route.hold_color}</p>
-                <p>Gym Location: {route.gym_area}</p>
-                <p>Setter: {route.setter_name}</p>
-                <p>Setter's Grade: {route.setter_grade}</p>
-                <p>Quality: {route.consensus_rating}</p>
+                <section className="routeInfo">
+                    <h1>{route.name}</h1>
+                    <h3>{route.consensusYdsGrade}</h3>
+                    <p>Color: {route.hold_color}</p>
+                    <p>Gym Location: {route.gym_area}</p>
+                    <p>Setter: {route.setter_name}</p>
+                    <p>Setter's Grade: {route.setter_grade}</p>
+                    <p>Quality: {route.consensus_rating}</p>
+                </section>
                 <img src={route.image} alt={route.name} height="400px" />
             </div>
         )

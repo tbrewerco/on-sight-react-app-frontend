@@ -9,7 +9,22 @@ export const StyledLayout = styled.div`
 export const StyledMain = styled.main`
     flex-grow: 1;   
     display: flex;
+    justify-content: center;
+    background-color: black;
+    margin-top: 7px;
+    color: white;
+    max-height: 500px;
+    .route {
+        display: flex;
+        flex-direction: row-reverse;
+        padding-top: 50px;
+        justify-content: center;
+    }
+    .routeInfo {
+        Padding: 10px;
+    }
 `;
+
 
 export const StyledHeader = styled.header`
     display: flex;
@@ -32,6 +47,9 @@ export const StyledHeader = styled.header`
     a {
         text-decoration: none;
         color: inherit;
+    }
+    h1 {
+        padding-left: 1rem;
     }
 `;
 
