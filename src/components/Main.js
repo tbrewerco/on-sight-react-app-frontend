@@ -31,7 +31,8 @@ export default function Main(props) {
             route.consensusYdsGrade = yosemiteGrades[route.consensus_grade] || "unknown";
             // in other words, if the route.consensus_grade is '1', it matches with yosemiteGrades.1, which has the value '5.4'
             ////////////////////////////////////////////
-            // future: convert setter_grade to YDS
+            // convert setter_grade to YDS
+            route.setterGradeYDS = yosemiteGrades[route.setter_grade];
             // future: if route is boulder, use 'this grading system function', else use yosemite...
             ////////////////////////////////////////////
             return route;
