@@ -8,6 +8,7 @@ import RouteIndex from "../pages/RouteIndex";
 import RouteShow from "../pages/RouteShow";
 import Home from "../pages/Home";
 import yosemiteGrades from "../utils/grades";
+import huecoGrades from "../utils/BoulderGrades";
 
 export default function Main(props) {
 
@@ -23,21 +24,21 @@ export default function Main(props) {
         let data = await response.json();
         setRoutes(data);
         data = data.map(route => {
-            // map over routes data
-            // retrieve the route's numerical consensus_grade value
-            // locate within the yosemiteGrades object an entry whose numerical key matches the numerical consensus_grade
-            // set consensusYdsGrade to the string value from that yosemiteGrades entry  
-            // add consensusYdsGrade to each route object as a new property
-            route.consensusYdsGrade = yosemiteGrades[route.consensus_grade] || "unknown";
-            // in other words, if the route.consensus_grade is '1', it matches with yosemiteGrades.1, which has the value '5.4'
-            ////////////////////////////////////////////
-            // convert setter_grade to YDS
-            route.setterGradeYDS = yosemiteGrades[route.setter_grade];
-            // future: if route is boulder, use 'this grading system function', else use yosemite...
-            ////////////////////////////////////////////
+            // map over routes and retrieve each route's numerical consensus_grade value
+            // locate within the yosemiteGrades or huecoGrades object an entry whose numerical key matches the numerical consensus_grade
+            // set consensusGrade to the string value from that yosemiteGrades or huecoGrades entry  
+            // add consensusGrade to each route object as a new property
+            if (route.route_type === "Sport") {
+                route.consensusGrade = yosemiteGrades[route.consensus_grade] || "Unknown";
+                route.setterGrade = yosemiteGrades[route.setter_grade] || "Unknown";
+            } else if (route.route_type === "Boulder") {
+                route.consensusGrade = huecoGrades[route.consensus_grade] || "Unknown";
+                route.setterGrade = huecoGrades[route.setter_grade] || "Unknown";
+            } else {
+                route.consensusGrade = route.setterGrade = "ERROR: Unknown Route type";
+            }
             return route;
         })
-
     }
 
     //////
