@@ -45,10 +45,6 @@ The OF version allows climbing gym operators to do the following:
 ## Getting Started
 [Click Here](https://on-sight-app-frontend.herokuapp.com/routes) to see functional app.
 
-## Unsolved Issues
-- Dropdown menu no showing on deployed app
-- 
-
 ## Future Enhancements
 - Operator/user registration/authentication
 - Route grading, rating, and comments
