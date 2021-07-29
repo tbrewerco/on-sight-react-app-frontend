@@ -24,6 +24,7 @@ function RouteShow({ match, routes }) {
             <div className="route">
                 <section className="routeInfo">
                     <h1>{route.name}</h1>
+                    <h3><em>{route.route_type}</em></h3>
                     <h3>{route.consensusYdsGrade}</h3>
                     <p>Color: {route.hold_color}</p>
                     <p>Gym Location: {route.gym_area}</p>
