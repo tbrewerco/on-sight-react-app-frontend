@@ -1,22 +1,36 @@
 import { useEffect, useState } from "react";
+import huecoGrades from "../utils/BoulderGrades";
+import yosemiteGrades from "../utils/grades";
 
-function RouteShow({ match, routes }) {
-
-    const [route, setRoute] = useState(null);
+function RouteShow({ match, gyms }) {
+    const [theGyms, setTheGyms] = useState(null);
 
     useEffect(() => {
-        if (routes) {
-            const id = match.params.id;
-            const foundRoute = routes.find(p => p._id === id);
-            setRoute(foundRoute)
+        if (gyms) {
+            setTheGyms(gyms);
         }
-    }, [routes, match])
+    }, [gyms, match])
 
     const loading = () => {
         return <p>Loading...</p>
     }
 
     const loaded = () => {
+        const gym = gyms.filter(gym => gym._id === match.params.gymId);
+        // console.log(gym.name)
+        let route = (gym[0].climbing_routes.filter(route => route._id === match.params.routeId))[0];
+        // console.log(route);
+        // add consensusGrade as yosemite grade or hueco grade to route object as a new property
+        if (route.route_type === "Sport") {
+            route.consensusGrade = yosemiteGrades[route.consensus_grade] || "Unknown";
+            route.setterGrade = yosemiteGrades[route.setter_grade] || "Unknown";
+        } else if (route.route_type === "Boulder") {
+            route.consensusGrade = huecoGrades[route.consensus_grade] || "Unknown";
+            route.setterGrade = huecoGrades[route.setter_grade] || "Unknown";
+        } else {
+            route.consensusGrade = route.setterGrade = "ERROR: Unknown Route type";
+        }
+
         return (
             <div className="route">
                 <section className="routeInfo">
@@ -33,7 +47,7 @@ function RouteShow({ match, routes }) {
             </div>
         )
     }
-    return route ? loaded() : loading();
+    return gyms ? loaded() : loading();
 }
 
 export default RouteShow
