@@ -1,12 +1,11 @@
-//////
-// dependencies/imports
-//////
 import { Dropdown } from "react-bootstrap";
 
-//////
-// pages/components
-//////
-export default function RouteIndex(props) {
+export default function RouteSearch({ match, gyms, gym }) {
+
+  let routes = gym.climbing_routes.map(route => {
+
+    return route;
+  })
 
   const loaded = () => {
     return (
@@ -14,9 +13,9 @@ export default function RouteIndex(props) {
         <Dropdown>
           <Dropdown.Toggle id="dropdown-button-dark-example1" variant="dark">Select a Route</Dropdown.Toggle>
           <Dropdown.Menu variant="dark">
-            {props.routes.map(route => {
+            {routes.map(route => {
               return (
-                <Dropdown.Item key={route.name} href={`/routes/${route._id}`}>{route.name}</Dropdown.Item>
+                <Dropdown.Item route={route} key={route.name} href={`/routes/${gym._id}/${route._id}`}>{route.name}</Dropdown.Item>
               )
             })}
           </Dropdown.Menu>
@@ -31,7 +30,7 @@ export default function RouteIndex(props) {
 
   return (
     <section>
-      {props.routes ? loaded() : loading()}
+      {routes ? loaded() : loading()}
     </section>
   );
 }

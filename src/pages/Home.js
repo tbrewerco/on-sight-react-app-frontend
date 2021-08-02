@@ -1,9 +1,9 @@
-import { StyledMain } from "../styles";
+import GymSearch from "../components/GymSearch";
 
-export default function Home(props) {
-    return (
-        <StyledMain>
-            <h1>home</h1>
-        </StyledMain>
-    )
+export default function Home({ gyms, createGyms }) {
+  return (
+    <div>
+      <GymSearch gyms={gyms} createGyms={createGyms} />
+    </div>
+  )
 }
