@@ -10,7 +10,7 @@ export default function GymSearch({ gyms }) {
           <Dropdown.Menu variant="dark">
             {gyms.map(gym => {
               return (
-                <Dropdown.Item key={gym.name} href={`/gyms/${gym._id}`}>{gym.name}</Dropdown.Item>
+                <Dropdown.Item key={gym.name} href={`/gyms/${gym._id}`}>{gym.name} ({gym.distanceFromUser} mi) </Dropdown.Item>
               )
             })}
           </Dropdown.Menu>
