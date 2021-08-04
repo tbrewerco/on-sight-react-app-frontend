@@ -23,7 +23,7 @@ export default function GymShow({ match, gyms, createGyms }) {
     return (
       <div className="gymShowContainer">
         <div className="gymShow">
-          <img src={gym.images[0]} alt={gym.name} height="350px"></img>
+          <img className="gymImage" src={gym.images[0]} alt={gym.name} height="350px"></img>
         </div>
         <RouteSearch className="routeSearchComp" gym={gym} key={gym._id} createGyms={createGyms} />
       </div>

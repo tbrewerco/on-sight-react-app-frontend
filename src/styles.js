@@ -17,7 +17,7 @@ export const StyledMain = styled.main`
     max-height: 700px;
     .route {
         display: flex;
-        flex-direction: row-reverse;
+        flex-direction: row;
         padding: 50px;
         justify-content: space-between;
         align-items: center;
@@ -62,7 +62,7 @@ export const StyledMain = styled.main`
     .findYourGym{
         display: flex;
         flex-direction: column;
-
+        margin: 50px;
     }
     .text-muted {
         display: flex;
@@ -89,6 +89,12 @@ export const StyledMain = styled.main`
         margin: 50px;
         
     } 
+    .gymImage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 50px;
+    }
 `;
 
 
@@ -125,7 +131,10 @@ export const StyledHeader = styled.header`
 
 export const StyledFooter = styled.footer`
     display: flex;
-    height: 3rem;
+    height: 50px;
     justify-content: center;
     align-items: center;
+    p {
+        margin-top: 30vh;
+    }
 `;
