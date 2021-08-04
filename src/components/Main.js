@@ -25,7 +25,7 @@ export default function Main({ gyms, createGyms, getLocation, getGyms }) {
                 <Route
                     path="/gyms/:id"
                     render={(rp) => (
-                        <GymShow
+                        <GymShow className="gymShowComp"
                             gyms={gyms}
                             {...rp}
                         />
