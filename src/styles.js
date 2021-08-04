@@ -30,12 +30,15 @@ export const StyledMain = styled.main`
     .gymSearch {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: baseline;
+        margin: 20px;
+        justify-content: space-between;
     }
     .gymSearchComp {
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin: 50px;
     }
     .gymSearchContainer {
         display: flex;
@@ -62,7 +65,8 @@ export const StyledMain = styled.main`
     .findYourGym{
         display: flex;
         flex-direction: column;
-        margin: 50px;
+        margin: 20px;
+        margin-top: 50px;
     }
     .text-muted {
         display: flex;
@@ -95,8 +99,18 @@ export const StyledMain = styled.main`
         align-items: center;
         margin: 50px;
     }
+    .homePage {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    .placeHolderImage {
+        display: flex;
+        flex-direction: row;
+        margin: 70px;
+    }
 `;
-
 
 export const StyledHeader = styled.header`
     display: flex;
