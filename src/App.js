@@ -7,33 +7,46 @@ import { useState, useEffect } from "react";
 export default function App() {
   const [gyms, setGyms] = useState(null);
   let URL = "http://localhost:4000/gyms"
-  //////
+  /////
+  // create req.query url
+  /////
+  const getGymUrl = (base, position, zipCode) => {
+    base = base + '?'
+    if (position) {
+      base = base + `lat=${position.coords.latitude}&long=${position.coords.longitude}`
+    };
+    if (position && zipCode) {
+      base = base + `&zipCode=${zipCode}`
+    };
+    if (!position && zipCode) {
+      base = base + `zipCode=${zipCode}`
+    };
+    console.log('base is:' + base);
+    return base;
+  }
+  ////
   // get data
-  //////
-  const getGyms = async (position) => {
+  ////
+  const getGyms = async (position, zipCode) => {
     try {
-      if (position) {
-        URL = URL + `?lat=${position.coords.latitude}&long=${position.coords.longitude}`;
-      }
-      const response = await fetch(URL);
+      const gymUrl = getGymUrl(URL, position, zipCode)
+      const response = await fetch(gymUrl);
       let data = await response.json();
       setGyms(data);
     } catch (error) {
       console.log(error)
     }
   }
-
-
+  ////
+  // get user location using html geolocation/zip code
+  ////
   const getLocation = () => {
-    getGyms()
-    const data = navigator.geolocation.getCurrentPosition(getGyms)
+    getGyms(navigator.geolocation.getCurrentPosition(getGyms))
   }
-
   //////
   // create routes
   //////
   const createGyms = async (route) => {
-
     await fetch(URL, {
       method: "POST",
       headers: {
@@ -50,7 +63,10 @@ export default function App() {
     <StyledLayout>
       <Header />
       <Main
-        gyms={gyms} createGyms={createGyms}
+        gyms={gyms}
+        createGyms={createGyms}
+        getLocation={getLocation}
+        getGyms={getGyms}
       />
       <Footer />
     </StyledLayout>

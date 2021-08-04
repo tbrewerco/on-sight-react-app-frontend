@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import huecoGrades from "../utils/BoulderGrades";
 import yosemiteGrades from "../utils/grades";
+import { Dropdown, Spinner } from "react-bootstrap";
 
 function RouteShow({ match, gyms }) {
     const [theGyms, setTheGyms] = useState(null);
@@ -12,8 +13,10 @@ function RouteShow({ match, gyms }) {
     }, [gyms, match])
 
     const loading = () => {
-        return <p>Loading...</p>
-    }
+        return <Spinner animation="border" role="status">
+            <span className="visually-hidden"></span>
+        </Spinner>;
+    };
 
     const loaded = () => {
         const gym = gyms.filter(gym => gym._id === match.params.gymId);

@@ -1,5 +1,6 @@
 import RouteSearch from "../components/RouteSearch";
 import { useEffect, useState } from "react";
+import { Dropdown, Spinner } from "react-bootstrap";
 
 export default function GymShow({ match, gyms, createGyms }) {
   const [gym, setGym] = useState(null);
@@ -13,8 +14,10 @@ export default function GymShow({ match, gyms, createGyms }) {
   }, [gyms, match])
 
   const loading = () => {
-    return <p>Loading...</p>
-  }
+    return <Spinner animation="border" role="status">
+      <span className="visually-hidden"></span>
+    </Spinner>;
+  };
 
   const loaded = () => {
     return (

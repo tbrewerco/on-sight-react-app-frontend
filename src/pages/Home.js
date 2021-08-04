@@ -1,9 +1,14 @@
 import GymSearch from "../components/GymSearch";
 
-export default function Home({ gyms, createGyms }) {
+export default function Home({ gyms, createGyms, getLocation, getGyms }) {
   return (
-    <div>
-      <GymSearch gyms={gyms} createGyms={createGyms} />
+    <div className="gymSearch">
+      <GymSearch className="gymSearchComp"
+        gyms={gyms}
+        createGyms={createGyms}
+        getLocation={getLocation}
+        getGyms={getGyms}
+      />
     </div>
   )
 }

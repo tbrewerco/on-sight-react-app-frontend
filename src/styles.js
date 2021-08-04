@@ -27,10 +27,48 @@ export const StyledMain = styled.main`
         flex-direction: column;
         Padding: 30px;
     }
+    .gymSearch {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .gymSearchComp {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .gymSearchContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .findYourGymText {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+    .form-data {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
     .DropDown {
         display: flex;
         flex-direction: column;
         margin: 6rem;
+    }
+    .findYourGym{
+        display: flex;
+        flex-direction: column;
+
+    }
+    .text-muted {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 1rem;
     }
 `;
 

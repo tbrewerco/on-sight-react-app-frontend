@@ -1,4 +1,4 @@
-import { Dropdown } from "react-bootstrap";
+import { Dropdown, Spinner } from "react-bootstrap";
 
 export default function RouteSearch({ match, gyms, gym }) {
 
@@ -25,7 +25,9 @@ export default function RouteSearch({ match, gyms, gym }) {
   };
 
   const loading = () => {
-    return <span>Loading...</span>;
+    return <Spinner animation="border" role="status">
+      <span className="visually-hidden"></span>
+    </Spinner>;
   };
 
   return (
