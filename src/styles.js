@@ -14,7 +14,7 @@ export const StyledMain = styled.main`
     background-color: black;
     margin-top: 7px;
     color: white;
-    max-height: 500px;
+    max-height: 700px;
     .route {
         display: flex;
         flex-direction: row-reverse;
@@ -52,12 +52,12 @@ export const StyledMain = styled.main`
         display: flex;
         flex-direction: column;
         align-items: center;
-
     }
     .DropDown {
         display: flex;
         flex-direction: column;
-        margin: 6rem;
+        margin: 4rem;
+        padding: 30px;
     }
     .findYourGym{
         display: flex;
@@ -70,6 +70,25 @@ export const StyledMain = styled.main`
         align-items: center;
         margin-top: 1rem;
     }
+    .gymShowContainer {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        padding: 100px;
+    }
+    .gymShow {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 50px;
+    }
+    .gymShowComp {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 50px;
+        
+    } 
 `;
 
 
