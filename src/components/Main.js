@@ -4,13 +4,23 @@ import GymShow from "../pages/GymShow";
 import RouteShow from "../pages/RouteShow";
 import Home from "../pages/Home";
 
-export default function Main({ gyms, createGyms }) {
+export default function Main({ gyms, createGyms, getLocation, getGyms }) {
 
     return (
-        <StyledMain gyms={gyms} createGyms={createGyms}>
+        <StyledMain
+            gyms={gyms}
+            createGyms={createGyms}
+            getLocation={getLocation}
+        >
+
             <Switch>
                 <Route exact path="/">
-                    <Home gyms={gyms} createGyms={createGyms} />
+                    <Home
+                        gyms={gyms}
+                        createGyms={createGyms}
+                        getLocation={getLocation}
+                        getGyms={getGyms}
+                    />
                 </Route>
                 <Route
                     path="/gyms/:id"
