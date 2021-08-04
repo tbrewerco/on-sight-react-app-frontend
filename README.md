@@ -18,9 +18,11 @@ The OF version allows climbing gym operators to do the following:
 ## Screenshots
 
 
-- ![screenshot](images/Screen Shot 2021-08-03 at 11.02.01 PM.png)
-- ![screenshot](images/Screen Shot 2021-08-03 at 11.02.33 PM.png)
-- ![screenshot](images/Screen Shot 2021-08-03 at 11.02.49 PM.png)
+- ![screenshot](images/1.png)
+  
+- ![screenshot](images/2.png)
+  
+- ![screenshot](images/3.png)
 
 
 ## ERD
@@ -29,10 +31,10 @@ The OF version allows climbing gym operators to do the following:
 - ![screenshot](images/onsight-erd.png)
 
 
-## Wireframes
+## Wireflows
 
 
-- ![screenshot](images/RevOn.Sight Climbing Wire Flows - Annotated.png)
+- ![screenshot](images/wireflow.png)
 
 
 ## Technologies
