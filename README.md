@@ -1,5 +1,6 @@
 # On.Sight Climber's App
 
+
 On.Sight is a climbing gym application that features a public-facing (PF) version for climbing gym users and an operator-facing (OF) version for gym operators. 
 
 The PF version will allow climbing gym users to do the following:
@@ -13,10 +14,13 @@ The OF version allows climbing gym operators to do the following:
 - Post Gym details and climbing routes to a database. 
 - Manage gym operations (inventory, payroll, scheduling, income, expenses, etc.) 
 
+
 ## Screenshots
 
 
-- ![screenshot](images/Screen%20Shot%202021-07-09%20at%209.10.28%20AM.png)
+- ![screenshot](images/Screen Shot 2021-08-03 at 11.02.01 PM.png)
+- ![screenshot](images/Screen Shot 2021-08-03 at 11.02.33 PM.png)
+- ![screenshot](images/Screen Shot 2021-08-03 at 11.02.49 PM.png)
 
 
 ## ERD
@@ -28,8 +32,7 @@ The OF version allows climbing gym operators to do the following:
 ## Wireframes
 
 
-- ![screenshot](images/route-search-page-wireframe.png)
-
+- ![screenshot](images/RevOn.Sight Climbing Wire Flows - Annotated.png)
 
 
 ## Technologies
@@ -41,14 +44,20 @@ The OF version allows climbing gym operators to do the following:
 - styled-components
 - faker.js
 - Heroku
+- haversine-distance
+- HTML Geolocation API
+- Zipcodes Zip Code Lookups
 
 ## Getting Started
-[Click Here](https://on-sight-app-frontend.herokuapp.com/routes) to see functional app.
+
+
+[Click Here](https://on-sight-app-frontend.herokuapp.com/) to see functional app.
+
 
 ## Future Enhancements
 - Operator/user registration/authentication
 - Route grading, rating, and comments
 - Consensus rating display
-- Route Index/gym map
-- Sort functions
+- Route index/gym map
+- Gym/route Sort functions
   
