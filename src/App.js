@@ -6,12 +6,15 @@ import { useState, useEffect } from "react";
 
 export default function App() {
   const [gyms, setGyms] = useState(null);
-  const URL = "http://localhost:4000/gyms"
+  let URL = "http://localhost:4000/gyms"
   //////
   // get data
   //////
-  const getGyms = async () => {
+  const getGyms = async (position) => {
     try {
+      if (position) {
+        URL = URL + `?lat=${position.coords.latitude}&long=${position.coords.longitude}`;
+      }
       const response = await fetch(URL);
       let data = await response.json();
       setGyms(data);
@@ -19,6 +22,13 @@ export default function App() {
       console.log(error)
     }
   }
+
+
+  const getLocation = () => {
+    getGyms()
+    const data = navigator.geolocation.getCurrentPosition(getGyms)
+  }
+
   //////
   // create routes
   //////
@@ -34,7 +44,7 @@ export default function App() {
     getGyms();
   };
 
-  useEffect(() => getGyms(), []); // clean up effect once on mount/ unmount
+  useEffect(() => getLocation(), []); // clean up effect once on mount/ unmount
 
   return (
     <StyledLayout>
