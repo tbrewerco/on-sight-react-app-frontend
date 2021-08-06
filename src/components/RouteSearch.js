@@ -1,6 +1,6 @@
 import { Dropdown, Spinner } from "react-bootstrap";
 
-export default function RouteSearch({ match, gyms, gym }) {
+export default function RouteSearch({ gym }) {
 
   let routes = gym.climbing_routes.map(route => {
 
@@ -11,6 +11,7 @@ export default function RouteSearch({ match, gyms, gym }) {
     return (
       <div className="DropDown">
         <h1>{gym.name}</h1>
+        <p>{gym.address[0].streetAddress}</p>
         <Dropdown>
           <Dropdown.Toggle id="dropdown-button-dark-example1" variant="dark">Select a Route</Dropdown.Toggle>
           <Dropdown.Menu variant="dark">

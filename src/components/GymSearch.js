@@ -8,13 +8,11 @@ export default function GymSearch({ gyms, getLocation, getGyms }) {
   const handleChange = (event) => {
     const { value } = event.target;
     setZipForm(value.replace(/[^\d{5}]$/, "").substr(0, 5));
-
   }
 
   function handleSubmit(event) {
     getGyms(null, zipForm)
     event.preventDefault();
-
   }
 
   const search = () => {
@@ -49,7 +47,7 @@ export default function GymSearch({ gyms, getLocation, getGyms }) {
               <Dropdown.Toggle id="dropdown-button-dark-example1" variant="dark">Select a Gym</Dropdown.Toggle>
               <Dropdown.Menu variant="dark">
                 {gyms.map(gym => {
-                  // conditionally display miles on items
+                  // conditionally display distance on items
                   function hasDistance() {
                     return <Dropdown.Item key={gym.name} href={`/gyms/${gym._id}`}>{gym.name} ({gym.distanceFromUser} mi) </Dropdown.Item>
                   };
