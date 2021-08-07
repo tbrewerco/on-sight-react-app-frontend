@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import huecoGrades from "../utils/BoulderGrades";
 import yosemiteGrades from "../utils/grades";
+import TickList from "../components/TickList";
+import AddTick from "../components/AddTick";
 import { Dropdown, Spinner } from "react-bootstrap";
 
 function RouteShow({ match, gyms }) {
@@ -35,19 +37,27 @@ function RouteShow({ match, gyms }) {
         }
 
         return (
-            <div className="route">
-                <section className="routeInfo">
-                    <h1>{route.name}</h1>
-                    <h3><em>{route.route_type}</em></h3>
-                    <h3>{route.consensusGrade}</h3>
-                    <p>Color: {route.hold_color}</p>
-                    <p>Gym Location: {route.gym_area}</p>
-                    <p>Setter: {route.setter_name}</p>
-                    <p>Setter's Grade: {route.setterGrade}</p>
-                    <p>Quality: {route.consensus_rating}/5</p>
-                </section>
-                <img src={route.image} alt={route.name} height="400px" />
-            </div>
+            <>
+                <div className="route">
+                    <section className="routeInfo">
+                        <h1>{route.name}</h1>
+                        <h3><em>{route.route_type}</em></h3>
+                        <h3>{route.consensusGrade}</h3>
+                        <p>Color: {route.hold_color}</p>
+                        <p>Gym Location: {route.gym_area}</p>
+                        <p>Setter: {route.setter_name}</p>
+                        <p>Setter's Grade: {route.setterGrade}</p>
+                        <p>Quality: {route.consensus_rating}/5</p>
+                    </section>
+                    <img src={route.image} alt={route.name} height="400px" />
+                </div>
+                <div>
+                    <AddTick />
+                </div>
+                <div>
+                    <TickList />
+                </div>
+            </>
         )
     }
     return gyms ? loaded() : loading();
