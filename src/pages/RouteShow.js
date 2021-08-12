@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
 import huecoGrades from "../utils/BoulderGrades";
 import yosemiteGrades from "../utils/grades";
-import TickList from "../components/TickList";
+import Tick from "../components/Tick";
 import AddTick from "../components/AddTick";
 import { Dropdown, Spinner } from "react-bootstrap";
 
 function RouteShow({ match, gyms }) {
-    const [theGyms, setTheGyms] = useState(null);
 
-    useEffect(() => {
-        if (gyms) {
-            setTheGyms(gyms);
-        }
-    }, [gyms, match])
+    const [theRoute, setTheRoute] = useState(null);
 
     const loading = () => {
         return <Spinner animation="border" role="status">
@@ -22,9 +17,7 @@ function RouteShow({ match, gyms }) {
 
     const loaded = () => {
         const gym = gyms.filter(gym => gym._id === match.params.gymId);
-        // console.log(gym.name)
         let route = (gym[0].climbing_routes.filter(route => route._id === match.params.routeId))[0];
-        // console.log(route);
         // add consensusGrade as yosemite grade or hueco grade to route object as a new property
         if (route.route_type === "Sport") {
             route.consensusGrade = yosemiteGrades[route.consensus_grade] || "Unknown";
@@ -55,7 +48,14 @@ function RouteShow({ match, gyms }) {
                     <AddTick />
                 </div>
                 <div>
-                    <TickList />
+                    {route.user_ticks.map(tick =>
+                        <div>
+                            <Tick
+                                tick={tick}
+                                key={tick.id}
+                            />
+                        </div>
+                    )}
                 </div>
             </>
         )
