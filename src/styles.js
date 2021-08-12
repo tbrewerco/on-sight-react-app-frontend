@@ -1,21 +1,21 @@
 import styled from "styled-components";
 
 export const StyledLayout = styled.div`
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     min-height: 100vh;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif; */
 `;
 
 export const StyledMain = styled.main`
-    flex-grow: 1;   
+    /* flex-grow: 1;   
     display: flex;
     justify-content: center;
     background-color: black;
     margin-top: 7px;
     color: white;
-    max-height: 700px;
-    .route {
+    max-height: 700px; */
+    /* .route {
         display: flex;
         flex-direction: row;
         padding: 50px;
@@ -109,7 +109,7 @@ export const StyledMain = styled.main`
         display: flex;
         flex-direction: row;
         margin: 70px;
-    }
+    } */
 `;
 
 export const StyledHeader = styled.header`
