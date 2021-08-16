@@ -13,7 +13,7 @@ export default function TickList({ tick, key, route }) {
 
   return (
     <>
-      <p>{tick.createdBy} - difficulty: {tick.userGrade} - quality rating: {tick.quality_rating} - comment: {tick.comment} - date added: {tick.createdAt.slice(0, 10).split("-").reverse().join("/")}</p>
+      <p>{tick.createdBy} - difficulty: {tick.userGrade} - quality rating: {tick.quality_rating}/5 - comment: "{tick.comment}" - date added: {tick.createdAt.slice(0, 10).split("-").reverse().join("/")}</p>
       <br />
     </>
   )
