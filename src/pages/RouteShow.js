@@ -51,6 +51,7 @@ function RouteShow({ match, gyms }) {
                     {route.user_ticks.map(tick =>
                         <div>
                             <Tick
+                                route={route}
                                 tick={tick}
                                 key={tick.id}
                             />
