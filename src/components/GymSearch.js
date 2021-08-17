@@ -22,7 +22,7 @@ export default function GymSearch({ gyms, getLocation, getGyms }) {
         <div className="zipSearch">
           <form action="" className="form-data" onSubmit={handleSubmit}>
             <input
-              placeholder="Search by zip ..."
+              placeholder="Search by zip..."
               type="text"
               name="zip"
               value={zipForm}
@@ -31,6 +31,7 @@ export default function GymSearch({ gyms, getLocation, getGyms }) {
             <br />
             <label htmlFor="zip">or...</label>
           </form>
+          <Button onClick={getLocation()}>Use your location</Button>
           <hr></hr>
         </div>
       </div>
