@@ -57,7 +57,9 @@ export default function App() {
     getGyms();
   };
 
-  useEffect(() => getLocation(), []); // clean up effect once on mount/ unmount
+  useEffect(() => {
+    getGyms();
+  }, []); // clean up effect once on mount/ unmount
 
   return (
     <StyledLayout>
