@@ -7,6 +7,10 @@ import { useState, useEffect } from "react";
 export default function App() {
   const [gyms, setGyms] = useState(null);
   let URL = "http://localhost:4000/gyms"
+
+  // clean up effect once on mount / unmount
+  useEffect(() => getGyms(), []);
+
   /////
   // create req.query url
   /////
@@ -41,7 +45,11 @@ export default function App() {
   // get user location using html geolocation/zip code
   ////
   const getLocation = () => {
-    getGyms(navigator.geolocation.getCurrentPosition(getGyms))
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(getGyms)
+    } else {
+      alert("Geolocation not supported by this browser");
+    }
   }
   //////
   // create routes
@@ -56,10 +64,6 @@ export default function App() {
     });
     getGyms();
   };
-
-  useEffect(() => {
-    getGyms();
-  }, []); // clean up effect once on mount/ unmount
 
   return (
     <StyledLayout>

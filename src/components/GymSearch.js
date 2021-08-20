@@ -1,5 +1,5 @@
 import { Dropdown, Spinner, Form, Button } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function GymSearch({ gyms, getLocation, getGyms }) {
 
@@ -31,6 +31,7 @@ export default function GymSearch({ gyms, getLocation, getGyms }) {
             <br />
             <label htmlFor="zip">or...</label>
           </form>
+          <Button onClick={getLocation}>Use your location</Button>
           <hr></hr>
         </div>
       </div>
