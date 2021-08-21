@@ -19,13 +19,9 @@ export default function App() {
     if (position) {
       base = base + `lat=${position.coords.latitude}&long=${position.coords.longitude}`
     };
-    if (position && zipCode) {
-      base = base + `&zipCode=${zipCode}`
-    };
-    if (!position && zipCode) {
+    if (zipCode) {
       base = base + `zipCode=${zipCode}`
     };
-    console.log('base is:' + base);
     return base;
   }
   ////
