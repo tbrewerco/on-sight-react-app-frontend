@@ -10,6 +10,7 @@ export default function TickList({ tick, key, route }) {
   } else {
     tick.userGrade = "N/A";
   }
+  console.log(tick)
 
   return (
     <>

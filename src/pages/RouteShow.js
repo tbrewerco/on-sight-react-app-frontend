@@ -45,7 +45,7 @@ function RouteShow({ match, gyms }) {
                     <img src={route.image} alt={route.name} height="400px" />
                 </div>
                 <div>
-                    <AddTick />
+                    <AddTick route={route} />
                 </div>
                 <div>
                     {route.user_ticks.map(tick =>

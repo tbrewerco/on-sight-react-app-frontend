@@ -11,7 +11,7 @@ export default function GymSearch({ gyms, getLocation, getGyms }) {
   }
 
   function handleSubmit(event) {
-    getGyms(null, zipForm)
+    getGyms(null, zipForm) 
     event.preventDefault();
   }
 
