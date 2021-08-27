@@ -6,8 +6,15 @@ import AddTick from "../components/AddTick";
 import { Dropdown, Spinner } from "react-bootstrap";
 
 function RouteShow({ match, gyms }) {
-
-    const [theRoute, setTheRoute] = useState(null);
+    const starsArray = [1, 2, 3, 4, 5];
+    const [rating, setRating] = useState(0);
+    const [hoverState, setHoverState] = useState(0);
+    const [starColor, setStarColor] = useState(
+        {
+            unfilled: "#656464",
+            filled: "#e3cb19"
+        }
+    );
 
     const loading = () => {
         return <Spinner animation="border" role="status">
@@ -18,7 +25,7 @@ function RouteShow({ match, gyms }) {
     const loaded = () => {
         const gym = gyms.filter(gym => gym._id === match.params.gymId);
         let route = (gym[0].climbing_routes.filter(route => route._id === match.params.routeId))[0];
-        // add consensusGrade as yosemite grade or hueco grade to route object as a new property
+        // add consensusGrade as yosemite grade (sport grade) or hueco grade (boulder grade) to route object as a new property
         if (route.route_type === "Sport") {
             route.consensusGrade = yosemiteGrades[route.consensus_grade] || "Unknown";
             route.setterGrade = yosemiteGrades[route.setter_grade] || "Unknown";
@@ -45,7 +52,15 @@ function RouteShow({ match, gyms }) {
                     <img src={route.image} alt={route.name} height="400px" />
                 </div>
                 <div>
-                    <AddTick route={route} />
+                    <AddTick
+                        route={route}
+                        starsArray={starsArray}
+                        rating={rating}
+                        starColor={starColor}
+                        hoverState={hoverState}
+                        setHoverState={setHoverState}
+                        setRating={setRating}
+                    />
                 </div>
                 <div>
                     {route.user_ticks.map(tick =>
@@ -54,6 +69,7 @@ function RouteShow({ match, gyms }) {
                                 route={route}
                                 tick={tick}
                                 key={tick.id}
+                                starsArray={starsArray}
                             />
                         </div>
                     )}

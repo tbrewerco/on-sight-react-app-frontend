@@ -110,6 +110,12 @@ export const StyledMain = styled.main`
         flex-direction: row;
         margin: 70px;
     } */
+    .starRatingDiv {
+        display: flex;
+    }
+    .addTick-top-row {
+        display: flex;
+    }
 `;
 
 export const StyledHeader = styled.header`
