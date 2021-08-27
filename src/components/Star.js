@@ -5,7 +5,7 @@ export default function Star({ rating, starColor, starId, onMouseEnter, onMouseL
   if (rating >= starId) {
     styleColor = starColor.filled
   }
-  console.log(rating)
+
   return (
     <div
       onMouseEnter={onMouseEnter}
