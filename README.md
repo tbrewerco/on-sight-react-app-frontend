@@ -61,5 +61,5 @@ The OF version allows climbing gym operators to do the following:
 - Route grading, rating, and comments
 - Consensus rating display
 - Route index/gym map
-- Gym/route Sort functions
-  
+- Gym/route sort functions
+- OF version
