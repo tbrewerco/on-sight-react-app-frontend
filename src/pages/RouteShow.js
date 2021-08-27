@@ -15,6 +15,7 @@ function RouteShow({ match, gyms }) {
             filled: "#e3cb19"
         }
     );
+    const [gradeSelection, setGradeSelection] = useState(null)
 
     const loading = () => {
         return <Spinner animation="border" role="status">
@@ -60,6 +61,7 @@ function RouteShow({ match, gyms }) {
                         hoverState={hoverState}
                         setHoverState={setHoverState}
                         setRating={setRating}
+                        setGradeSelection={setGradeSelection}
                     />
                 </div>
                 <div>
