@@ -5,10 +5,11 @@ export default function Star({ rating, starColor, starId, onMouseEnter, onMouseL
   if (rating >= starId) {
     styleColor = starColor.filled
   }
+
   return (
     <div
       onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      onMouseLeave={onMouseLeave, onClick}
       onClick={onClick}
     >
       <StarRateRoundedIcon style={{ color: styleColor }} />

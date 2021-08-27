@@ -5,7 +5,7 @@ import yosemiteGrades from "../utils/grades";
 import InfoRoundedIcon from '@material-ui/icons/InfoRounded';
 import Star from "./Star";
 
-export default function AddTick({ route, starsArray, rating, setRating, starColor, hoverState, setHoverState }) {
+export default function AddTick({ route, starsArray, rating, setRating, starColor, hoverState, setHoverState, setGradeSelection }) {
   const gradesArray = [];
   function buildGradesArray() {
     if (route.consensus_grade) {
@@ -27,7 +27,7 @@ export default function AddTick({ route, starsArray, rating, setRating, starColo
               <Dropdown.Menu variant="dark">
                 {gradesArray.map(grade => {
                   if (route.route_type === "Sport") {
-                    return <DropdownItem>{yosemiteGrades[grade]}</DropdownItem>
+                    return <DropdownItem onClick={() => setGradeSelection(grade)}>{yosemiteGrades[grade]}</DropdownItem>
                   }
                   if (route.route_type === "Boulder") {
                     return <DropdownItem>{huecoGrades[grade]}</DropdownItem>
