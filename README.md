@@ -15,14 +15,14 @@ The OF version allows climbing gym operators to do the following:
 - Manage gym operations (inventory, payroll, scheduling, income, expenses, etc.) 
 
 
-## Screenshots
+<!-- ## Screenshots
 
 
 - ![screenshot](images/1.png)
   
 - ![screenshot](images/2.png)
   
-- ![screenshot](images/3.png)
+- ![screenshot](images/3.png) -->
 
 
 ## ERD
