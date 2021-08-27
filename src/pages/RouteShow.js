@@ -8,7 +8,7 @@ import { Dropdown, Spinner } from "react-bootstrap";
 function RouteShow({ match, gyms }) {
     const starsArray = [1, 2, 3, 4, 5];
     const [rating, setRating] = useState(0);
-    const [hoverState, setHoverState] = useState(0);
+    const [hoverState, setHoverState] = useState(-1);
     const [starColor, setStarColor] = useState(
         {
             unfilled: "#656464",
