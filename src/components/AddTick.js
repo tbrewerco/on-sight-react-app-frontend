@@ -3,6 +3,7 @@ import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import huecoGrades from "../utils/BoulderGrades";
 import yosemiteGrades from "../utils/grades";
 import InfoRoundedIcon from '@material-ui/icons/InfoRounded';
+import TextField from '@material-ui/core/TextField';
 import Star from "./Star";
 
 export default function AddTick({ route, starsArray, rating, setRating, starColor, hoverState, setHoverState, setGradeSelection }) {
@@ -60,6 +61,18 @@ export default function AddTick({ route, starsArray, rating, setRating, starColo
               />
             ))}
           </div><span>Loved it!</span>
+        </div>
+        <div>
+          <TextField
+            id="filled-textarea"
+            label="Add your comments here..."
+            placeholder=""
+            style={{ margin: 8 }}
+            multiline
+            variant="filled"
+            fullWidth
+            margin="dense"
+          />
         </div>
       </Form>
     </>

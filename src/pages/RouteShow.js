@@ -71,7 +71,7 @@ function RouteShow({ match, gyms }) {
                                 route={route}
                                 tick={tick}
                                 key={tick.id}
-                                starsArray={starsArray}
+                                starColor={starColor}
                             />
                         </div>
                     )}
