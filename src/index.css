@@ -2,3 +2,29 @@ body {
     margin: 0;
     font-family: Helvetica;
 }
+
+.addTickForm {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
+    /* justify-content: center; */
+}
+
+.commentText textarea {
+    display: flex;
+    min-width: 500px;
+    margin: auto;
+    flex-grow: 3;
+}
+
+.commentButton {
+    margin: 10px;
+}
+
+.buttonDiv {
+    margin: 10px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: flex-end;
+}
