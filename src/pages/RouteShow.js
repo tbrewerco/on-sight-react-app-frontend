@@ -5,23 +5,49 @@ import Tick from "../components/Tick";
 import AddTick from "../components/AddTick";
 import { Dropdown, Spinner } from "react-bootstrap";
 
-function RouteShow({ match, gyms }) {
-    const starsArray = [1, 2, 3, 4, 5];
+function RouteShow({ match, gyms, getGyms }) {
     const [rating, setRating] = useState(0);
+    const [gradeSelection, setGradeSelection] = useState(-1)
+    const [comment, setComment] = useState('');
     const [hoverState, setHoverState] = useState(-1);
+    const starsArray = [1, 2, 3, 4, 5];
     const [starColor, setStarColor] = useState(
         {
             unfilled: "#656464",
             filled: "#e3cb19"
         }
     );
-    const [gradeSelection, setGradeSelection] = useState(null)
+    let URL = `http://localhost:4000/gyms/${match.params.gymId}/climbing_routes/${match.params.routeId}`;
+
+    // create tick
+    const createTick = async (newTick) => {
+        await fetch(URL, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "Application/json",
+            },
+            body: JSON.stringify(newTick),
+        });
+        getGyms();
+    };
+
+    let newTick = {
+        difficulty_grade: gradeSelection,
+        comment: comment,
+        quality_rating: rating
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        createTick(newTick)
+    }
 
     const loading = () => {
         return <Spinner animation="border" role="status">
             <span className="visually-hidden"></span>
         </Spinner>;
     };
+
 
     const loaded = () => {
         const gym = gyms.filter(gym => gym._id === match.params.gymId);
@@ -52,16 +78,20 @@ function RouteShow({ match, gyms }) {
                     </section>
                     <img src={route.image} alt={route.name} height="400px" />
                 </div>
-                <div>
+                <div className="AddTickComp">
                     <AddTick
                         route={route}
                         starsArray={starsArray}
-                        rating={rating}
                         starColor={starColor}
                         hoverState={hoverState}
                         setHoverState={setHoverState}
                         setRating={setRating}
                         setGradeSelection={setGradeSelection}
+                        setComment={setComment}
+                        comment={comment}
+                        rating={rating}
+                        handleSubmit={handleSubmit}
+                        gradeSelection={gradeSelection}
                     />
                 </div>
                 <div>
