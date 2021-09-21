@@ -6,8 +6,9 @@ import AddTick from "../components/AddTick";
 import { Dropdown, Spinner } from "react-bootstrap";
 
 function RouteShow({ match, gyms }) {
-    const starsArray = [1, 2, 3, 4, 5];
     const [rating, setRating] = useState(0);
+    const [gradeSelection, setGradeSelection] = useState(-1)
+    const [comment, setComment] = useState('');
     const [hoverState, setHoverState] = useState(-1);
     const [starColor, setStarColor] = useState(
         {
@@ -15,7 +16,13 @@ function RouteShow({ match, gyms }) {
             filled: "#e3cb19"
         }
     );
-    const [gradeSelection, setGradeSelection] = useState(null)
+    const starsArray = [1, 2, 3, 4, 5];
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const newTick = { gradeSelection, rating, comment }
+        console.log(newTick);
+    }
 
     const loading = () => {
         return <Spinner animation="border" role="status">
@@ -52,16 +59,20 @@ function RouteShow({ match, gyms }) {
                     </section>
                     <img src={route.image} alt={route.name} height="400px" />
                 </div>
-                <div>
+                <div className="AddTickComp">
                     <AddTick
                         route={route}
                         starsArray={starsArray}
-                        rating={rating}
                         starColor={starColor}
                         hoverState={hoverState}
                         setHoverState={setHoverState}
                         setRating={setRating}
                         setGradeSelection={setGradeSelection}
+                        setComment={setComment}
+                        comment={comment}
+                        rating={rating}
+                        handleSubmit={handleSubmit}
+                        gradeSelection={gradeSelection}
                     />
                 </div>
                 <div>
