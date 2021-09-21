@@ -5,22 +5,41 @@ import Tick from "../components/Tick";
 import AddTick from "../components/AddTick";
 import { Dropdown, Spinner } from "react-bootstrap";
 
-function RouteShow({ match, gyms }) {
+function RouteShow({ match, gyms, getGyms }) {
     const [rating, setRating] = useState(0);
     const [gradeSelection, setGradeSelection] = useState(-1)
     const [comment, setComment] = useState('');
     const [hoverState, setHoverState] = useState(-1);
+    const starsArray = [1, 2, 3, 4, 5];
     const [starColor, setStarColor] = useState(
         {
             unfilled: "#656464",
             filled: "#e3cb19"
         }
     );
-    const starsArray = [1, 2, 3, 4, 5];
+    let URL = `http://localhost:4000/gyms/${match.params.gymId}/climbing_routes/${match.params.routeId}`;
+
+    // create tick
+    const createTick = async (newTick) => {
+        await fetch(URL, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "Application/json",
+            },
+            body: JSON.stringify(newTick),
+        });
+        getGyms();
+    };
+
+    let newTick = {
+        difficulty_grade: gradeSelection,
+        comment: comment,
+        quality_rating: rating
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const newTick = { gradeSelection, rating, comment }
+        createTick(newTick)
     }
 
     const loading = () => {
@@ -28,6 +47,7 @@ function RouteShow({ match, gyms }) {
             <span className="visually-hidden"></span>
         </Spinner>;
     };
+
 
     const loaded = () => {
         const gym = gyms.filter(gym => gym._id === match.params.gymId);

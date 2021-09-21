@@ -36,14 +36,11 @@ export default function Main({ gyms, createGyms, getLocation, getGyms }) {
                     render={(rp) => (
                         <RouteShow
                             gyms={gyms}
+                            getGyms={getGyms}
                             {...rp}
                         />
                     )}
                 />
-                {/* <Route exact path="/:id">
-                    <GymShow gyms={gyms} createGyms={createGyms} />
-                </Route> */}
-
             </Switch>
 
         </StyledMain>
