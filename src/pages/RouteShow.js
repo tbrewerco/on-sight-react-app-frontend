@@ -21,7 +21,6 @@ function RouteShow({ match, gyms }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         const newTick = { gradeSelection, rating, comment }
-        console.log(newTick);
     }
 
     const loading = () => {

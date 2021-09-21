@@ -1,14 +1,13 @@
-import { Dropdown, Form, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
-import DropdownItem from "react-bootstrap/esm/DropdownItem";
+import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 import huecoGrades from "../utils/BoulderGrades";
 import yosemiteGrades from "../utils/grades";
 import InfoRoundedIcon from '@material-ui/icons/InfoRounded';
-import TextField from '@material-ui/core/TextField';
 import Star from "./Star";
 
-export default function AddTick({ route, starsArray, rating, setRating, starColor, hoverState, setHoverState, setGradeSelection }) {
+export default function AddTick({ route, starsArray, setRating, starColor, hoverState, setHoverState, setGradeSelection, gradeSelection, setComment, comment, handleSubmit }) {
+
   const gradesArray = [];
-  function buildGradesArray() {
+  const buildGradesArray = () => {
     if (route.consensus_grade) {
       for (var i = route.consensus_grade - 5; i <= route.consensus_grade + 5; i++) {
         gradesArray.push(i);
@@ -17,35 +16,45 @@ export default function AddTick({ route, starsArray, rating, setRating, starColo
   }
   buildGradesArray();
 
+  const handleChange = (event) => {
+    setGradeSelection(event.target.value)
+  }
+
   return (
     <>
-      <Form>
+      <form
+        className="addTickForm"
+        onSubmit={handleSubmit}
+      >
         <div className="addTick-top-row">
           <div className="DropDown">
-            <Dropdown>
-              <span className="howDifficult">How difficult was this route? </span>
-              <Dropdown.Toggle id="dropdown-button-dark-example1" variant="dark">Select a grade</Dropdown.Toggle>
-              <Dropdown.Menu variant="dark">
-                {gradesArray.map(grade => {
-                  if (route.route_type === "Sport") {
-                    return <DropdownItem onClick={() => setGradeSelection(grade)}>{yosemiteGrades[grade]}</DropdownItem>
-                  }
-                  if (route.route_type === "Boulder") {
-                    return <DropdownItem>{huecoGrades[grade]}</DropdownItem>
-                  }
-                })}
-              </Dropdown.Menu>
-              {/* Tooltip */}
-              <OverlayTrigger
-                placement="right"
-                overlay={<Tooltip id="tooltip">You may select a grade of up to five grades higher or five grades lower than the current "consensus grade"</Tooltip>}>
-                <Button
-                  variant="light"
-                  className="d-inline-flex align-items-center">
-                  <span className="ms-1">{<InfoRoundedIcon />}</span>
-                </Button>
-              </OverlayTrigger>
-            </Dropdown>
+            <span className="howDifficult">How difficult was this route? </span>
+            <select value={gradeSelection} onChange={handleChange}>
+              <option selected value={NaN}>Select a Grade</option>
+              {gradesArray.map(grade => {
+                if (route.route_type === "Sport") {
+                  return <option
+                    value={grade}
+                    key={grade}
+                  >{yosemiteGrades[grade]}</option>
+                }
+                if (route.route_type === "Boulder") {
+                  return <option
+                    value={grade}
+                    key={grade}>{huecoGrades[grade]}</option>
+                }
+              })}
+            </select>
+            {/* Tooltip */}
+            <OverlayTrigger
+              placement="right"
+              overlay={<Tooltip id="tooltip">You may select a grade of up to five grades higher or five grades lower than the current "consensus grade"</Tooltip>}>
+              <Button
+                variant="light"
+                className="d-inline-flex align-items-center">
+                <span className="ms-1">{<InfoRoundedIcon />}</span>
+              </Button>
+            </OverlayTrigger>
           </div><span>Did you like the route</span><span>? Not so much</span>
           <div className="starRatingDiv">
             {starsArray.map((star, i) => (
@@ -53,28 +62,25 @@ export default function AddTick({ route, starsArray, rating, setRating, starColo
                 key={i}
                 starColor={starColor}
                 starId={i}
-                hoverState={hoverState}
                 rating={hoverState || 0}
                 onMouseEnter={() => setHoverState(i)}
-                onMouseLeave={() => setHoverState(i)}
-                onClick={() => setRating(i)}
+                onClick={() => setRating(i += 1)}
               />
             ))}
           </div><span>Loved it!</span>
         </div>
-        <div>
-          <TextField
-            id="filled-textarea"
-            label="Add your comments here..."
-            placeholder=""
-            style={{ margin: 8 }}
-            multiline
-            variant="filled"
-            fullWidth
-            margin="dense"
-          />
+        <div className="commentText">
+          <textarea
+            placeholder="Add your comment here"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          >
+          </textarea>
         </div>
-      </Form>
+        <div className="buttonDiv">
+          <button className="commentButton">Submit your comments/ratings</button>
+        </div>
+      </form>
     </>
   )
 }
