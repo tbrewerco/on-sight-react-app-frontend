@@ -2,9 +2,11 @@
 import huecoGrades from "../utils/BoulderGrades";
 import yosemiteGrades from "../utils/grades";
 import StarRateRoundedIcon from '@material-ui/icons/StarRateRounded';
+import { useState } from "react";
 
 // component
-export default function TickList({ tick, route, starColor, match, getGyms }) {
+export default function TickList({ tick, route, starColor, match, getGyms, handleClickForEditModal }) {
+
   // for star-rating display on ticks
   const tickStarsArray = [];
   const buildTickStarsArray = () => {
@@ -41,7 +43,10 @@ export default function TickList({ tick, route, starColor, match, getGyms }) {
     <>
       <p>Username goes here {tick.createdBy} - difficulty: {tick.userGrade} - quality rating: {tickStarsArray.map(star => { return <StarRateRoundedIcon style={{ color: starColor.filled }} /> })}comment: "{tick.comment}" - date added: {tick.createdAt.slice(0, 10)}</p>
       <br />
-      <button type="button" onClick={deleteTick}>Delete this Send</button>
+      <button type="button" onClick={e => {
+        handleClickForEditModal(tick._id);
+      }}>Edit your send</button>
+      <button type="button" onClick={deleteTick}>Delete your send</button>
     </>
   )
 }

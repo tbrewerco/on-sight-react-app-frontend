@@ -5,6 +5,7 @@ import yosemiteGrades from "../utils/grades";
 import Tick from "../components/Tick";
 import AddTick from "../components/AddTick";
 import { Spinner } from "react-bootstrap";
+import EditTickModal from "../components/EditTickModal";
 
 // component
 export default function RouteShow({ match, gyms, getGyms }) {
@@ -19,6 +20,19 @@ export default function RouteShow({ match, gyms, getGyms }) {
             filled: "#e3cb19"
         }
     );
+    const [showEditModal, setShowEditModal] = useState(
+        {
+            show: null
+        }
+    );
+
+    const handleClickForEditModal = (id) => {
+        // alert(id)
+        setShowEditModal({
+            show: true
+        })
+        console.log(showEditModal)
+    }
 
     let URL = `http://localhost:4000/gyms/${match.params.gymId}/climbing_routes/${match.params.routeId}`;
 
@@ -101,6 +115,9 @@ export default function RouteShow({ match, gyms, getGyms }) {
                     />
                 </div>
                 <div>
+                    <EditTickModal />
+                </div>
+                <div>
                     {route.user_ticks.map(tick =>
                         <div>
                             <Tick
@@ -110,6 +127,7 @@ export default function RouteShow({ match, gyms, getGyms }) {
                                 starColor={starColor}
                                 getGyms={getGyms}
                                 match={match}
+                                handleClickForEditModal={handleClickForEditModal}
                             />
                         </div>
                     )}
