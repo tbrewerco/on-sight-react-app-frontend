@@ -6,7 +6,8 @@ import Tick from "../components/Tick";
 import AddTick from "../components/AddTick";
 import { Spinner } from "react-bootstrap";
 
-function RouteShow({ match, gyms, getGyms }) {
+// component
+export default function RouteShow({ match, gyms, getGyms }) {
     const starsArray = [1, 2, 3, 4, 5];
     const [rating, setRating] = useState(0);
     const [gradeSelection, setGradeSelection] = useState(-1);
@@ -107,6 +108,8 @@ function RouteShow({ match, gyms, getGyms }) {
                                 tick={tick}
                                 key={tick.id}
                                 starColor={starColor}
+                                getGyms={getGyms}
+                                match={match}
                             />
                         </div>
                     )}
@@ -118,5 +121,3 @@ function RouteShow({ match, gyms, getGyms }) {
     // if gyms, return loaded, else return loading
     return gyms ? loaded() : loading();
 }
-
-export default RouteShow;
