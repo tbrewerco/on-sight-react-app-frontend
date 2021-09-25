@@ -1,5 +1,6 @@
+// dependencies
 import { StyledLayout } from "./styles.js";
-import Header from "./components/Header.js"
+import Header from "./components/Header.js";
 import Main from "./components/Main.js";
 import Footer from "./components/Footer";
 import { useState, useEffect } from "react";
@@ -11,9 +12,7 @@ export default function App() {
   // clean up effect once on mount / unmount
   useEffect(() => getGyms(), []);
 
-  /////
   // create req.query url
-  /////
   const getGymUrl = (base, position, zipCode) => {
     base = base + '?'
     if (position) {
@@ -23,10 +22,9 @@ export default function App() {
       base = base + `zipCode=${zipCode}`
     };
     return base;
-  }
-  ////
+  };
+
   // get data
-  ////
   const getGyms = async (position, zipCode) => {
     try {
       const gymUrl = getGymUrl(URL, position, zipCode)
@@ -35,21 +33,19 @@ export default function App() {
       setGyms(data);
     } catch (error) {
       console.log(error)
-    }
-  }
-  ////
+    };
+  };
+
   // get user location using html geolocation/zip code
-  ////
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(getGyms)
     } else {
       alert("Geolocation not supported by this browser");
-    }
-  }
-  //////
+    };
+  };
+
   // create routes
-  //////
   const createGyms = async (route) => {
     await fetch(URL, {
       method: "POST",
@@ -73,4 +69,4 @@ export default function App() {
       <Footer />
     </StyledLayout>
   );
-}
+};

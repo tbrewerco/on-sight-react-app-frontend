@@ -1,22 +1,25 @@
-import { useEffect, useState } from "react";
+// dependencies
+import { useState } from "react";
 import huecoGrades from "../utils/BoulderGrades";
 import yosemiteGrades from "../utils/grades";
 import Tick from "../components/Tick";
 import AddTick from "../components/AddTick";
-import { Dropdown, Spinner } from "react-bootstrap";
+import { Spinner } from "react-bootstrap";
 
-function RouteShow({ match, gyms, getGyms }) {
+// component
+export default function RouteShow({ match, gyms, getGyms }) {
+    const starsArray = [1, 2, 3, 4, 5];
     const [rating, setRating] = useState(0);
-    const [gradeSelection, setGradeSelection] = useState(-1)
+    const [gradeSelection, setGradeSelection] = useState(-1);
     const [comment, setComment] = useState('');
     const [hoverState, setHoverState] = useState(-1);
-    const starsArray = [1, 2, 3, 4, 5];
     const [starColor, setStarColor] = useState(
         {
             unfilled: "#656464",
             filled: "#e3cb19"
         }
     );
+
     let URL = `http://localhost:4000/gyms/${match.params.gymId}/climbing_routes/${match.params.routeId}`;
 
     // create tick
@@ -31,24 +34,27 @@ function RouteShow({ match, gyms, getGyms }) {
         getGyms();
     };
 
+    // set new tick data to state data
     let newTick = {
         difficulty_grade: gradeSelection,
         comment: comment,
         quality_rating: rating
-    }
+    };
 
+    // handle form submit, call createTick
     const handleSubmit = (e) => {
         e.preventDefault();
         createTick(newTick)
-    }
+    };
 
+    // display when loading
     const loading = () => {
         return <Spinner animation="border" role="status">
             <span className="visually-hidden"></span>
         </Spinner>;
     };
 
-
+    // display when loaded
     const loaded = () => {
         const gym = gyms.filter(gym => gym._id === match.params.gymId);
         let route = (gym[0].climbing_routes.filter(route => route._id === match.params.routeId))[0];
@@ -61,7 +67,7 @@ function RouteShow({ match, gyms, getGyms }) {
             route.setterGrade = huecoGrades[route.setter_grade] || "Unknown";
         } else {
             route.consensusGrade = route.setterGrade = "ERROR: Unknown Route type";
-        }
+        };
 
         return (
             <>
@@ -102,6 +108,8 @@ function RouteShow({ match, gyms, getGyms }) {
                                 tick={tick}
                                 key={tick.id}
                                 starColor={starColor}
+                                getGyms={getGyms}
+                                match={match}
                             />
                         </div>
                     )}
@@ -109,7 +117,7 @@ function RouteShow({ match, gyms, getGyms }) {
             </>
         )
     }
+
+    // if gyms, return loaded, else return loading
     return gyms ? loaded() : loading();
 }
-
-export default RouteShow
