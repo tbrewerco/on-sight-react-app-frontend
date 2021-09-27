@@ -4,27 +4,16 @@ import yosemiteGrades from "../utils/grades";
 import InfoRoundedIcon from '@material-ui/icons/InfoRounded';
 import Star from "./Star";
 
-export default function AddTick({ route, starsArray, setRating, starColor, hoverState, setHoverState, setGradeSelection, gradeSelection, setComment, comment, handleSubmit, gradesArray }) {
+export default function EditTickModal({ show, onCloseEditModal, route, starsArray, setRating, starColor, hoverState, setHoverState, setGradeSelection, gradeSelection, setComment, comment, handleSubmitEdit, gradesArray, handleChange }) {
 
-  // const gradesArray = [];
-  // const buildGradesArray = () => {
-  //   if (route.consensus_grade) {
-  //     for (var i = route.consensus_grade - 5; i <= route.consensus_grade + 5; i++) {
-  //       gradesArray.push(i);
-  //     }
-  //   }
-  // }
-  // buildGradesArray();
-
-  const handleChange = (event) => {
-    setGradeSelection(event.target.value)
+  if (!show) {
+    return null;
   }
-
-  return (
+  else return (
     <>
       <form
         className="addTickForm"
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmitEdit}
       >
         <div className="addTick-top-row">
           <div className="DropDown">
@@ -81,6 +70,7 @@ export default function AddTick({ route, starsArray, setRating, starColor, hover
           <button className="commentButton">Submit your comments/ratings</button>
         </div>
       </form>
+      <button onClick={(e) => onCloseEditModal(e)}>Close</button>
     </>
   )
 }
