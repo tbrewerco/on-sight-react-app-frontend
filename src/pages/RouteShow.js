@@ -20,9 +20,10 @@ export default function RouteShow({ match, gyms, getGyms }) {
             filled: "#e3cb19"
         }
     );
+
     const [showEditModal, setShowEditModal] = useState(
         {
-            show: null
+            show: false
         }
     );
 
@@ -31,8 +32,9 @@ export default function RouteShow({ match, gyms, getGyms }) {
         setShowEditModal({
             show: true
         })
-        console.log(showEditModal)
     }
+    console.log(showEditModal)
+
 
     let URL = `http://localhost:4000/gyms/${match.params.gymId}/climbing_routes/${match.params.routeId}`;
 
@@ -115,7 +117,9 @@ export default function RouteShow({ match, gyms, getGyms }) {
                     />
                 </div>
                 <div>
-                    <EditTickModal />
+                    <EditTickModal
+                        show={showEditModal.show}
+                    />
                 </div>
                 <div>
                     {route.user_ticks.map(tick =>

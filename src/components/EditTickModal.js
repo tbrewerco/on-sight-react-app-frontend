@@ -4,10 +4,12 @@ import yosemiteGrades from "../utils/grades";
 import InfoRoundedIcon from '@material-ui/icons/InfoRounded';
 import Star from "./Star";
 
-export default function EditTickModal({ route, starsArray, setRating, starColor, hoverState, setHoverState, setGradeSelection, gradeSelection, setComment, comment, handleSubmit }) {
+export default function EditTickModal({ show }) {
 
-
-  return (
+  if (!show) {
+    return null;
+  }
+  else return (
     <p>Edit Tick Modal</p>
     // <>
     //   <form
