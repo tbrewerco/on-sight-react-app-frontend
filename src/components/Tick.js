@@ -44,7 +44,7 @@ export default function TickList({ tick, route, starColor, match, getGyms, handl
       <p>Username goes here {tick.createdBy} - difficulty: {tick.userGrade} - quality rating: {tickStarsArray.map(star => { return <StarRateRoundedIcon style={{ color: starColor.filled }} /> })}comment: "{tick.comment}" - date added: {tick.createdAt.slice(0, 10)}</p>
       <br />
       <button type="button" onClick={e => {
-        handleClickForEditModal(tick._id);
+        handleClickForEditModal(tick);
       }}>Edit your send</button>
       <button type="button" onClick={deleteTick}>Delete your send</button>
     </>

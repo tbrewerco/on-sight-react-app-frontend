@@ -20,21 +20,27 @@ export default function RouteShow({ match, gyms, getGyms }) {
             filled: "#e3cb19"
         }
     );
-
     const [showEditModal, setShowEditModal] = useState(
         {
             show: false
         }
     );
+    const [tickInfo, setTickInfo] = useState(null);
 
-    const handleClickForEditModal = (id) => {
-        // alert(id)
+    // show edit modal
+    const handleClickForEditModal = (tick) => {
+        setTickInfo(tick);
         setShowEditModal({
             show: true
         })
     }
-    console.log(showEditModal)
 
+    // close edit modal
+    const onCloseEditModal = (e) => {
+        setShowEditModal({
+            show: false
+        })
+    }
 
     let URL = `http://localhost:4000/gyms/${match.params.gymId}/climbing_routes/${match.params.routeId}`;
 
@@ -119,6 +125,7 @@ export default function RouteShow({ match, gyms, getGyms }) {
                 <div>
                     <EditTickModal
                         show={showEditModal.show}
+                        onCloseEditModal={onCloseEditModal}
                     />
                 </div>
                 <div>
