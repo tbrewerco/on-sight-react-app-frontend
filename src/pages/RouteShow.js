@@ -27,6 +27,8 @@ export default function RouteShow({ match, gyms, getGyms }) {
     );
     const [tickInfo, setTickInfo] = useState(null);
 
+    const gradesArray = [];
+
     // show edit modal
     const handleClickForEditModal = (tick) => {
         setTickInfo(tick);
@@ -56,6 +58,18 @@ export default function RouteShow({ match, gyms, getGyms }) {
         getGyms();
     };
 
+    // edit tick
+    const editTick = async (newTick) => {
+        await fetch(URL, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "Application/json",
+            },
+            body: JSON.stringify(newTick),
+        });
+        getGyms();
+    };
+
     // set new tick data to state data
     let newTick = {
         difficulty_grade: gradeSelection,
@@ -69,6 +83,12 @@ export default function RouteShow({ match, gyms, getGyms }) {
         createTick(newTick)
     };
 
+    // handle form submit, call editTick
+    const handleSubmitEdit = (e) => {
+        e.preventDefault();
+        editTick(newTick)
+    };
+
     // display when loading
     const loading = () => {
         return <Spinner animation="border" role="status">
@@ -80,6 +100,17 @@ export default function RouteShow({ match, gyms, getGyms }) {
     const loaded = () => {
         const gym = gyms.filter(gym => gym._id === match.params.gymId);
         let route = (gym[0].climbing_routes.filter(route => route._id === match.params.routeId))[0];
+
+        // build grades array for dropdown in AddTick & EditTickModal
+        const buildGradesArray = () => {
+            if (route.consensus_grade) {
+                for (var i = route.consensus_grade - 5; i <= route.consensus_grade + 5; i++) {
+                    gradesArray.push(i);
+                }
+            }
+        }
+        buildGradesArray();
+
         // add consensusGrade as yosemite grade (sport grade) or hueco grade (boulder grade) to route object as a new property
         if (route.route_type === "Sport") {
             route.consensusGrade = yosemiteGrades[route.consensus_grade] || "Unknown";
@@ -120,12 +151,26 @@ export default function RouteShow({ match, gyms, getGyms }) {
                         rating={rating}
                         handleSubmit={handleSubmit}
                         gradeSelection={gradeSelection}
+                        gradesArray={gradesArray}
                     />
                 </div>
                 <div>
                     <EditTickModal
                         show={showEditModal.show}
                         onCloseEditModal={onCloseEditModal}
+                        route={route}
+                        starsArray={starsArray}
+                        starColor={starColor}
+                        hoverState={hoverState}
+                        setHoverState={setHoverState}
+                        setRating={setRating}
+                        setGradeSelection={setGradeSelection}
+                        setComment={setComment}
+                        comment={comment}
+                        rating={rating}
+                        handleSubmitEdit={handleSubmitEdit}
+                        gradeSelection={gradeSelection}
+                        gradesArray={gradesArray}
                     />
                 </div>
                 <div>
