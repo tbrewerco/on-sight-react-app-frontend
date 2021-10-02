@@ -10,16 +10,17 @@ import EditTickModal from "../components/EditTickModal";
 // component
 export default function RouteShow({ match, gyms, getGyms }) {
     const starsArray = [1, 2, 3, 4, 5];
+    const gradesArray = [];
+
+    // state for add tick (addTick.js)
     const [rating, setRating] = useState(0);
     const [gradeSelection, setGradeSelection] = useState(-1);
     const [comment, setComment] = useState('');
-    const [hoverState, setHoverState] = useState(-1);
-    const [starColor, setStarColor] = useState(
-        {
-            unfilled: "#656464",
-            filled: "#e3cb19"
-        }
-    );
+
+    //state for update tick (editTickModal.js)
+    const [updatedRating, setUpdatedRating] = useState(null)
+    const [updatedGradeSelection, setUpdatedGradeSelection] = useState(null)
+    const [updatedComment, setUpdatedComment] = useState(null)
     const [showEditModal, setShowEditModal] = useState(
         {
             show: false
@@ -27,8 +28,16 @@ export default function RouteShow({ match, gyms, getGyms }) {
     );
     const [tickInfo, setTickInfo] = useState(null);
 
-    const gradesArray = [];
+    // state for star rating (addTick.js)
+    const [hoverState, setHoverState] = useState(-1);
+    const [starColor, setStarColor] = useState(
+        {
+            unfilled: "#656464",
+            filled: "#e3cb19"
+        }
+    );
 
+    // edit modal
     // show edit modal
     const handleClickForEditModal = (tick) => {
         setTickInfo(tick);
@@ -59,13 +68,14 @@ export default function RouteShow({ match, gyms, getGyms }) {
     };
 
     // edit tick
-    const editTick = async (newTick) => {
-        await fetch(URL, {
+    const editTick = async (updatedTick) => {
+        let editURL = URL + `/ticks/${tickInfo.id}/update`
+        await fetch(editURL, {
             method: "PATCH",
             headers: {
                 "Content-Type": "Application/json",
             },
-            body: JSON.stringify(newTick),
+            body: JSON.stringify(updatedTick),
         });
         getGyms();
     };
@@ -75,6 +85,13 @@ export default function RouteShow({ match, gyms, getGyms }) {
         difficulty_grade: gradeSelection,
         comment: comment,
         quality_rating: rating
+    };
+
+    // set updated tick data to update
+    let updatedTick = {
+        difficulty_grade: updatedGradeSelection,
+        comment: updatedComment,
+        quality_rating: updatedRating
     };
 
     // handle form submit, call createTick
@@ -163,13 +180,13 @@ export default function RouteShow({ match, gyms, getGyms }) {
                         starColor={starColor}
                         hoverState={hoverState}
                         setHoverState={setHoverState}
-                        setRating={setRating}
-                        setGradeSelection={setGradeSelection}
-                        setComment={setComment}
-                        comment={comment}
-                        rating={rating}
+                        setUpdatedRating={setUpdatedRating}
+                        setUpdatedGradeSelection={setUpdatedGradeSelection}
+                        setUpdatedComment={setUpdatedComment}
+                        updatedComment={updatedComment}
+                        updatedRating={updatedRating}
                         handleSubmitEdit={handleSubmitEdit}
-                        gradeSelection={gradeSelection}
+                        updatedGradeSelection={updatedGradeSelection}
                         gradesArray={gradesArray}
                     />
                 </div>
