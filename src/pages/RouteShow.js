@@ -1,5 +1,5 @@
 // dependencies
-import { useState } from "react";
+import { useState, prev } from "react";
 import huecoGrades from "../utils/BoulderGrades";
 import yosemiteGrades from "../utils/grades";
 import Tick from "../components/Tick";
@@ -10,16 +10,17 @@ import EditTickModal from "../components/EditTickModal";
 // component
 export default function RouteShow({ match, gyms, getGyms }) {
     const starsArray = [1, 2, 3, 4, 5];
+    const gradesArray = [];
+
+    // state for add tick (addTick.js)
     const [rating, setRating] = useState(0);
     const [gradeSelection, setGradeSelection] = useState(-1);
     const [comment, setComment] = useState('');
-    const [hoverState, setHoverState] = useState(-1);
-    const [starColor, setStarColor] = useState(
-        {
-            unfilled: "#656464",
-            filled: "#e3cb19"
-        }
-    );
+
+    //state for update tick (editTickModal.js)
+    const [updatedRating, setUpdatedRating] = useState(null)
+    const [updatedGradeSelection, setUpdatedGradeSelection] = useState(null)
+    const [updatedComment, setUpdatedComment] = useState(null)
     const [showEditModal, setShowEditModal] = useState(
         {
             show: false
@@ -27,7 +28,14 @@ export default function RouteShow({ match, gyms, getGyms }) {
     );
     const [tickInfo, setTickInfo] = useState(null);
 
-    const gradesArray = [];
+    // state for star rating (AddTick.js, EditTickModal.js)
+    const [hoverState, setHoverState] = useState(-1);
+    const [starColor, setStarColor] = useState(
+        {
+            unfilled: "#656464",
+            filled: "#e3cb19"
+        }
+    );
 
     // show edit modal
     const handleClickForEditModal = (tick) => {
@@ -59,13 +67,14 @@ export default function RouteShow({ match, gyms, getGyms }) {
     };
 
     // edit tick
-    const editTick = async (newTick) => {
-        await fetch(URL, {
+    const editTick = async (updatedTick) => {
+        let editURL = URL + `/ticks/${tickInfo._id}/update`
+        await fetch(editURL, {
             method: "PATCH",
             headers: {
                 "Content-Type": "Application/json",
             },
-            body: JSON.stringify(newTick),
+            body: JSON.stringify(updatedTick),
         });
         getGyms();
     };
@@ -77,16 +86,32 @@ export default function RouteShow({ match, gyms, getGyms }) {
         quality_rating: rating
     };
 
+    // set updated tick data to update
+    let updatedTick = {
+        difficulty_grade: updatedGradeSelection,
+        comment: updatedComment,
+        quality_rating: updatedRating
+    };
+
     // handle form submit, call createTick
     const handleSubmit = (e) => {
         e.preventDefault();
-        createTick(newTick)
+        createTick(newTick);
+        setRating(0)
+        setGradeSelection(-1);
+        setComment('');
+        setHoverState(-1);
     };
 
-    // handle form submit, call editTick
+    // handle editTickModal form submit, call editTick
     const handleSubmitEdit = (e) => {
         e.preventDefault();
-        editTick(newTick)
+        editTick(updatedTick);
+        setUpdatedRating(0)
+        setUpdatedGradeSelection(-1);
+        setUpdatedComment('');
+        setHoverState(-1);
+        onCloseEditModal();
     };
 
     // display when loading
@@ -163,13 +188,13 @@ export default function RouteShow({ match, gyms, getGyms }) {
                         starColor={starColor}
                         hoverState={hoverState}
                         setHoverState={setHoverState}
-                        setRating={setRating}
-                        setGradeSelection={setGradeSelection}
-                        setComment={setComment}
-                        comment={comment}
-                        rating={rating}
+                        setUpdatedRating={setUpdatedRating}
+                        setUpdatedGradeSelection={setUpdatedGradeSelection}
+                        setUpdatedComment={setUpdatedComment}
+                        updatedComment={updatedComment}
+                        updatedRating={updatedRating}
                         handleSubmitEdit={handleSubmitEdit}
-                        gradeSelection={gradeSelection}
+                        updatedGradeSelection={updatedGradeSelection}
                         gradesArray={gradesArray}
                     />
                 </div>
