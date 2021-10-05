@@ -4,8 +4,12 @@ import yosemiteGrades from "../utils/grades";
 import InfoRoundedIcon from '@material-ui/icons/InfoRounded';
 import Star from "./Star";
 
-export default function EditTickModal({ show, onCloseEditModal, route, starsArray, setUpdatedRating, starColor, hoverState, setHoverState, setUpdatedGradeSelection, updatedGradeSelection, setUpdatedComment, updatedComment, handleSubmitEdit, gradesArray, handleChange }) {
+export default function EditTickModal({ show, onCloseEditModal, route, starsArray, setUpdatedRating, starColor, hoverState, setHoverState, setUpdatedGradeSelection, updatedGradeSelection, setUpdatedComment, updatedComment, handleSubmitEdit, gradesArray }) {
 
+  const handleChange = (event) => {
+    setUpdatedGradeSelection(event.target.value)
+  }
+  // conditionally display edit tick modal (on click)
   if (!show) {
     return null;
   }
@@ -15,6 +19,7 @@ export default function EditTickModal({ show, onCloseEditModal, route, starsArra
         className="addTickForm"
         onSubmit={handleSubmitEdit}
       >
+        {/* grade dropdown */}
         <div className="addTick-top-row">
           <div className="DropDown">
             <span className="howDifficult">How difficult was this route? </span>
@@ -44,6 +49,7 @@ export default function EditTickModal({ show, onCloseEditModal, route, starsArra
                 <span className="ms-1">{<InfoRoundedIcon />}</span>
               </Button>
             </OverlayTrigger>
+            {/* star rating */}
           </div><span>Did you like the route</span><span>? Not so much</span>
           <div className="starRatingDiv">
             {starsArray.map((star, i) => (
@@ -58,6 +64,7 @@ export default function EditTickModal({ show, onCloseEditModal, route, starsArra
             ))}
           </div><span>Loved it!</span>
         </div>
+        {/* comment input */}
         <div className="commentText">
           <textarea
             placeholder="Add your comment here"
@@ -70,6 +77,7 @@ export default function EditTickModal({ show, onCloseEditModal, route, starsArra
           <button className="commentButton">Submit your comments/ratings</button>
         </div>
       </form>
+      {/* close modal */}
       <button onClick={(e) => onCloseEditModal(e)}>Close</button>
     </>
   )

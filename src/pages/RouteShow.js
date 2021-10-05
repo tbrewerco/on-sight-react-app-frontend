@@ -1,5 +1,5 @@
 // dependencies
-import { useState } from "react";
+import { useState, prev } from "react";
 import huecoGrades from "../utils/BoulderGrades";
 import yosemiteGrades from "../utils/grades";
 import Tick from "../components/Tick";
@@ -28,7 +28,7 @@ export default function RouteShow({ match, gyms, getGyms }) {
     );
     const [tickInfo, setTickInfo] = useState(null);
 
-    // state for star rating (addTick.js)
+    // state for star rating (AddTick.js, EditTickModal.js)
     const [hoverState, setHoverState] = useState(-1);
     const [starColor, setStarColor] = useState(
         {
@@ -37,7 +37,6 @@ export default function RouteShow({ match, gyms, getGyms }) {
         }
     );
 
-    // edit modal
     // show edit modal
     const handleClickForEditModal = (tick) => {
         setTickInfo(tick);
@@ -69,7 +68,7 @@ export default function RouteShow({ match, gyms, getGyms }) {
 
     // edit tick
     const editTick = async (updatedTick) => {
-        let editURL = URL + `/ticks/${tickInfo.id}/update`
+        let editURL = URL + `/ticks/${tickInfo._id}/update`
         await fetch(editURL, {
             method: "PATCH",
             headers: {
@@ -97,13 +96,22 @@ export default function RouteShow({ match, gyms, getGyms }) {
     // handle form submit, call createTick
     const handleSubmit = (e) => {
         e.preventDefault();
-        createTick(newTick)
+        createTick(newTick);
+        setRating(0)
+        setGradeSelection(-1);
+        setComment('');
+        setHoverState(-1);
     };
 
-    // handle form submit, call editTick
+    // handle editTickModal form submit, call editTick
     const handleSubmitEdit = (e) => {
         e.preventDefault();
-        editTick(newTick)
+        editTick(updatedTick);
+        setUpdatedRating(0)
+        setUpdatedGradeSelection(-1);
+        setUpdatedComment('');
+        setHoverState(-1);
+        onCloseEditModal();
     };
 
     // display when loading
