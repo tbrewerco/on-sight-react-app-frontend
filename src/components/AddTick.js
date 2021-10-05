@@ -6,16 +6,6 @@ import Star from "./Star";
 
 export default function AddTick({ route, starsArray, setRating, starColor, hoverState, setHoverState, setGradeSelection, gradeSelection, setComment, comment, handleSubmit, gradesArray }) {
 
-  // const gradesArray = [];
-  // const buildGradesArray = () => {
-  //   if (route.consensus_grade) {
-  //     for (var i = route.consensus_grade - 5; i <= route.consensus_grade + 5; i++) {
-  //       gradesArray.push(i);
-  //     }
-  //   }
-  // }
-  // buildGradesArray();
-
   const handleChange = (event) => {
     setGradeSelection(event.target.value)
   }
