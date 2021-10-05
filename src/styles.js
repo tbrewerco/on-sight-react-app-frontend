@@ -110,11 +110,49 @@ export const StyledMain = styled.main`
         flex-direction: row;
         margin: 70px;
     } */
+
+.starButton {
+    button {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      cursor: pointer;
+  }
+}
+.on {
+  color: #e3cc24;
+}
+.off {
+  color: #bababa;
+}
     .starRatingDiv {
         display: flex;
     }
     .addTick-top-row {
         display: flex;
+    }
+    .modalContainer {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background-color: rgba($color: #000000, $alpha: 1.0);
+    }
+    .editModal {
+        background-color: rgba($color: #555252, $alpha: .35);
+        width: calc(15rem + 15vm);
+        height: auto;
+        padding: 2rem;
+        border: solid black 20px;
+        border-radius: 20px;
+
+
     }
 `;
 

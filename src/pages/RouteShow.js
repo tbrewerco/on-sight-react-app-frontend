@@ -9,13 +9,15 @@ import EditTickModal from "../components/EditTickModal";
 
 // component
 export default function RouteShow({ match, gyms, getGyms }) {
-    const starsArray = [1, 2, 3, 4, 5];
+
+    // FIX THIS
     const gradesArray = [];
 
     // state for add tick (addTick.js)
-    const [rating, setRating] = useState(0);
+    const [rating, setRating] = useState(-1);
     const [gradeSelection, setGradeSelection] = useState(-1);
     const [comment, setComment] = useState('');
+    const [userClickedStar, setUserClickedStar] = useState(null);
 
     //state for update tick (editTickModal.js)
     const [updatedRating, setUpdatedRating] = useState(null)
@@ -30,12 +32,6 @@ export default function RouteShow({ match, gyms, getGyms }) {
 
     // state for star rating (AddTick.js, EditTickModal.js)
     const [hoverState, setHoverState] = useState(-1);
-    const [starColor, setStarColor] = useState(
-        {
-            unfilled: "#656464",
-            filled: "#e3cb19"
-        }
-    );
 
     // show edit modal
     const handleClickForEditModal = (tick) => {
@@ -56,6 +52,7 @@ export default function RouteShow({ match, gyms, getGyms }) {
 
     // create tick
     const createTick = async (newTick) => {
+        console.log(newTick)
         await fetch(URL, {
             method: "PATCH",
             headers: {
@@ -83,7 +80,7 @@ export default function RouteShow({ match, gyms, getGyms }) {
     let newTick = {
         difficulty_grade: gradeSelection,
         comment: comment,
-        quality_rating: rating
+        quality_rating: rating + 1
     };
 
     // set updated tick data to update
@@ -97,10 +94,11 @@ export default function RouteShow({ match, gyms, getGyms }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         createTick(newTick);
-        setRating(0)
+        setRating(-1)
         setGradeSelection(-1);
         setComment('');
         setHoverState(-1);
+        setUserClickedStar(null);
     };
 
     // handle editTickModal form submit, call editTick
@@ -165,10 +163,9 @@ export default function RouteShow({ match, gyms, getGyms }) {
                 <div className="AddTickComp">
                     <AddTick
                         route={route}
-                        starsArray={starsArray}
-                        starColor={starColor}
                         hoverState={hoverState}
                         setHoverState={setHoverState}
+                        rating={rating}
                         setRating={setRating}
                         setGradeSelection={setGradeSelection}
                         setComment={setComment}
@@ -184,8 +181,6 @@ export default function RouteShow({ match, gyms, getGyms }) {
                         show={showEditModal.show}
                         onCloseEditModal={onCloseEditModal}
                         route={route}
-                        starsArray={starsArray}
-                        starColor={starColor}
                         hoverState={hoverState}
                         setHoverState={setHoverState}
                         setUpdatedRating={setUpdatedRating}
@@ -205,7 +200,6 @@ export default function RouteShow({ match, gyms, getGyms }) {
                                 route={route}
                                 tick={tick}
                                 key={tick.id}
-                                starColor={starColor}
                                 getGyms={getGyms}
                                 match={match}
                                 handleClickForEditModal={handleClickForEditModal}
