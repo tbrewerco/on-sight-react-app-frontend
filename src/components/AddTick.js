@@ -16,6 +16,7 @@ export default function AddTick({ route, rating, setRating, hoverState, setHover
         className="addTickForm"
         onSubmit={handleSubmit}
       >
+        {/* grade dropdown */}
         <div className="addTick-top-row">
           <div className="DropDown">
             <span className="howDifficult">How difficult was this route? </span>
@@ -45,6 +46,7 @@ export default function AddTick({ route, rating, setRating, hoverState, setHover
                 <span className="ms-1">{<InfoRoundedIcon />}</span>
               </Button>
             </OverlayTrigger>
+            {/* star rating */}
           </div><span>Did you like the route</span><span>? Not so much</span>
           <div className="starRatingDiv">
             {[...Array(5)].map((star, i) => (
@@ -61,7 +63,8 @@ export default function AddTick({ route, rating, setRating, hoverState, setHover
                 </button>
               </div>
             ))}
-          </div><span>Loved it!</span>
+          </div>
+          <span>Loved it!</span>
         </div>
         <div className="commentText">
           <textarea

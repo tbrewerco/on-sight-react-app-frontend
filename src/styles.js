@@ -119,6 +119,17 @@ export const StyledMain = styled.main`
       cursor: pointer;
   }
 }
+.updateStarRatingDiv {
+    display: flex;
+}
+.updateStarButton {
+    button {
+        background-color: transparent;
+          border: none;
+          outline: none;
+          cursor: pointer;
+    }
+}
 .on {
   color: #e3cc24;
 }

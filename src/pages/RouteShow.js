@@ -17,20 +17,19 @@ export default function RouteShow({ match, gyms, getGyms }) {
     const [rating, setRating] = useState(-1);
     const [gradeSelection, setGradeSelection] = useState(-1);
     const [comment, setComment] = useState('');
+    const [hoverState, setHoverState] = useState(-1);
 
     //state for update tick (editTickModal.js)
-    const [updatedRating, setUpdatedRating] = useState(null)
-    const [updatedGradeSelection, setUpdatedGradeSelection] = useState(null)
-    const [updatedComment, setUpdatedComment] = useState(null)
+    const [updatedRating, setUpdatedRating] = useState(-1)
+    const [updatedGradeSelection, setUpdatedGradeSelection] = useState(-1)
+    const [updatedComment, setUpdatedComment] = useState('')
     const [showEditModal, setShowEditModal] = useState(
         {
             show: false
         }
     );
     const [tickInfo, setTickInfo] = useState(null);
-
-    // state for star rating (AddTick.js, EditTickModal.js)
-    const [hoverState, setHoverState] = useState(-1);
+    const [updateTickStarHoverState, setUpdateTickStarHoverState] = useState(-1);
 
     // show edit modal
     const handleClickForEditModal = (tick) => {
@@ -179,8 +178,8 @@ export default function RouteShow({ match, gyms, getGyms }) {
                         show={showEditModal.show}
                         onCloseEditModal={onCloseEditModal}
                         route={route}
-                        hoverState={hoverState}
-                        setHoverState={setHoverState}
+                        setUpdateTickStarHoverState={setUpdateTickStarHoverState}
+                        updateTickStarHoverState={updateTickStarHoverState}
                         setUpdatedRating={setUpdatedRating}
                         setUpdatedGradeSelection={setUpdatedGradeSelection}
                         setUpdatedComment={setUpdatedComment}
@@ -189,6 +188,7 @@ export default function RouteShow({ match, gyms, getGyms }) {
                         handleSubmitEdit={handleSubmitEdit}
                         updatedGradeSelection={updatedGradeSelection}
                         gradesArray={gradesArray}
+                        tickInfo={tickInfo}
                     />
                 </div>
                 <div>

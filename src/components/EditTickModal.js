@@ -4,7 +4,7 @@ import yosemiteGrades from "../utils/grades";
 import InfoRoundedIcon from '@material-ui/icons/InfoRounded';
 import Star from "./Star";
 
-export default function EditTickModal({ show, onCloseEditModal, route, starsArray, setUpdatedRating, starColor, hoverState, setHoverState, setUpdatedGradeSelection, updatedGradeSelection, setUpdatedComment, updatedComment, handleSubmitEdit, gradesArray }) {
+export default function EditTickModal({ show, onCloseEditModal, route, updatedRating, setUpdatedRating, updateTickStarHoverState, setUpdateTickStarHoverState, setUpdatedGradeSelection, updatedGradeSelection, setUpdatedComment, updatedComment, handleSubmitEdit, gradesArray, tickInfo }) {
 
   const handleChange = (event) => {
     setUpdatedGradeSelection(event.target.value)
@@ -26,8 +26,10 @@ export default function EditTickModal({ show, onCloseEditModal, route, starsArra
             <div className="addTick-top-row">
               <div className="DropDown">
                 <span className="howDifficult">How difficult was this route? </span>
-                <select defaultValue={NaN} value={updatedGradeSelection} onChange={handleChange}>
-                  <option value={NaN} >Select a Grade</option>
+                <select defaultValue={tickInfo.difficulty_grade} value={updatedGradeSelection} onChange={handleChange}>
+                  {/* dynamically set default option to user's previous option */}
+                  {/* WILL NEED TO HANDLE ERROR IN CASE OF NO DIFFICULTY GRADE */}
+                  <option value={tickInfo.difficulty_grade} >{route.route_type === "Sport" ? yosemiteGrades[tickInfo.difficulty_grade] : huecoGrades[tickInfo.difficulty_grade]}</option>
                   {gradesArray.map(grade => {
                     if (route.route_type === "Sport") {
                       return <option
@@ -54,23 +56,28 @@ export default function EditTickModal({ show, onCloseEditModal, route, starsArra
                 </OverlayTrigger>
                 {/* star rating */}
               </div><span>Did you like the route</span><span>? Not so much</span>
-              <div className="starRatingDiv">
-                {starsArray.map((star, i) => (
-                  <Star
-                    key={i}
-                    starColor={starColor}
-                    starId={i}
-                    rating={hoverState || 0}
-                    onMouseEnter={() => setHoverState(i)}
-                    onClick={() => setUpdatedRating(i += 1)}
-                  />
+              <div className="updateStarRatingDiv">
+                {[...Array(5)].map((star, i) => (
+                  <div className="updateStarButton">
+                    <button
+                      type="button"
+                      key={i}
+                      className={i <= (updateTickStarHoverState) ? "on" : "off"}
+                      onMouseEnter={() => setUpdateTickStarHoverState(i)}
+                      onMouseLeave={() => updatedRating < 0 ? setUpdateTickStarHoverState(-1) : setUpdateTickStarHoverState(updatedRating)}
+                      onClick={() => setUpdatedRating(i)}
+                    >
+                      <Star />
+                    </button>
+                  </div>
                 ))}
-              </div><span>Loved it!</span>
+              </div>
+              <span>Loved it!</span>
             </div>
             {/* comment input */}
             <div className="commentText">
               <textarea
-                placeholder="Add your comment here"
+                placeholder={tickInfo.comment}
                 value={updatedComment}
                 onChange={(e) => setUpdatedComment(e.target.value)}
               >
