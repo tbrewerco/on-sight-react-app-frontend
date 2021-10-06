@@ -17,7 +17,6 @@ export default function RouteShow({ match, gyms, getGyms }) {
     const [rating, setRating] = useState(-1);
     const [gradeSelection, setGradeSelection] = useState(-1);
     const [comment, setComment] = useState('');
-    const [userClickedStar, setUserClickedStar] = useState(null);
 
     //state for update tick (editTickModal.js)
     const [updatedRating, setUpdatedRating] = useState(null)
@@ -98,7 +97,6 @@ export default function RouteShow({ match, gyms, getGyms }) {
         setGradeSelection(-1);
         setComment('');
         setHoverState(-1);
-        setUserClickedStar(null);
     };
 
     // handle editTickModal form submit, call editTick
