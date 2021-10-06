@@ -4,11 +4,11 @@ import yosemiteGrades from "../utils/grades";
 import InfoRoundedIcon from '@material-ui/icons/InfoRounded';
 import Star from "./Star";
 
-export default function AddTick({ route, starsArray, setRating, starColor, hoverState, setHoverState, setGradeSelection, gradeSelection, setComment, comment, handleSubmit, gradesArray }) {
+export default function AddTick({ route, rating, setRating, hoverState, setHoverState, setGradeSelection, gradeSelection, setComment, comment, handleSubmit, gradesArray }) {
 
   const handleChange = (event) => {
-    setGradeSelection(event.target.value)
-  }
+    setGradeSelection(event.target.value);
+  };
 
   return (
     <>
@@ -16,6 +16,7 @@ export default function AddTick({ route, starsArray, setRating, starColor, hover
         className="addTickForm"
         onSubmit={handleSubmit}
       >
+        {/* grade dropdown */}
         <div className="addTick-top-row">
           <div className="DropDown">
             <span className="howDifficult">How difficult was this route? </span>
@@ -45,19 +46,25 @@ export default function AddTick({ route, starsArray, setRating, starColor, hover
                 <span className="ms-1">{<InfoRoundedIcon />}</span>
               </Button>
             </OverlayTrigger>
+            {/* star rating */}
           </div><span>Did you like the route</span><span>? Not so much</span>
           <div className="starRatingDiv">
-            {starsArray.map((star, i) => (
-              <Star
-                key={i}
-                starColor={starColor}
-                starId={i}
-                rating={hoverState || 0}
-                onMouseEnter={() => setHoverState(i)}
-                onClick={() => setRating(i += 1)}
-              />
+            {[...Array(5)].map((star, i) => (
+              <div className="starButton">
+                <button
+                  type="button"
+                  key={i}
+                  className={i <= (hoverState) ? "on" : "off"}
+                  onMouseEnter={() => setHoverState(i)}
+                  onMouseLeave={() => rating < 0 ? setHoverState(-1) : setHoverState(rating)}
+                  onClick={() => setRating(i)}
+                >
+                  <Star />
+                </button>
+              </div>
             ))}
-          </div><span>Loved it!</span>
+          </div>
+          <span>Loved it!</span>
         </div>
         <div className="commentText">
           <textarea
@@ -73,5 +80,4 @@ export default function AddTick({ route, starsArray, setRating, starColor, hover
       </form>
     </>
   )
-}
-
+};

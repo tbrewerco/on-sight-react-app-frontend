@@ -41,7 +41,7 @@ export default function TickList({ tick, route, starColor, match, getGyms, handl
 
   return (
     <>
-      <p>Username goes here {tick.createdBy} - difficulty: {tick.userGrade} - quality rating: {tickStarsArray.map(star => { return <StarRateRoundedIcon style={{ color: starColor.filled }} /> })}comment: "{tick.comment}" - date added: {tick.createdAt.slice(0, 10)}</p>
+      <p>Username goes here {tick.createdBy} - difficulty: {tick.userGrade} - quality rating: {tickStarsArray.map(star => { return <StarRateRoundedIcon className="on" /> })}comment: "{tick.comment}" - date added: {tick.createdAt.slice(0, 10)}</p>
       <br />
       <button type="button" onClick={e => {
         handleClickForEditModal(tick);
