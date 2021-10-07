@@ -58,8 +58,8 @@ export default function AddTick({ route, rating, setRating, hoverState, setHover
                   key={i}
                   className={i <= (hoverState) ? "on" : "off"}
                   onMouseEnter={() => setHoverState(i)}
-                  onMouseLeave={() => rating < 0 ? setHoverState(-1) : setHoverState(rating)}
-                  onClick={() => setRating(i)}
+                  onMouseLeave={() => rating < 0 || null ? setHoverState(1) : setHoverState(rating - 1)}
+                  onClick={() => setRating(i + 1)}
                 >
                   <Star />
                 </button>

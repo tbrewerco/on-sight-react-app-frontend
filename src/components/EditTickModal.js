@@ -65,7 +65,7 @@ export default function EditTickModal({ show, onCloseEditModal, route, updatedRa
                       key={i}
                       className={i <= (updateTickStarHoverState) ? "on" : "off"}
                       onMouseEnter={() => setUpdateTickStarHoverState(i)}
-                      onMouseLeave={() => updatedRating < 0 ? setUpdateTickStarHoverState(-1) : setUpdateTickStarHoverState(updatedRating)}
+                      onMouseLeave={() => updatedRating < 0 || null ? setUpdateTickStarHoverState(1) : setUpdateTickStarHoverState(updatedRating - 1)}
                       onClick={() => setUpdatedRating(i + 1)}
                     >
                       <Star />
