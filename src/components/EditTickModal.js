@@ -28,7 +28,6 @@ export default function EditTickModal({ show, onCloseEditModal, route, updatedRa
                 <span className="howDifficult">How difficult was this route? </span>
                 <select defaultValue={tickInfo.difficulty_grade} value={updatedGradeSelection} onChange={handleChange}>
                   {/* dynamically set default option to user's previous option */}
-                  {/* WILL NEED TO HANDLE ERROR IN CASE OF NO DIFFICULTY GRADE */}
                   <option value={tickInfo.difficulty_grade} >{route.route_type === "Sport" ? yosemiteGrades[tickInfo.difficulty_grade] : huecoGrades[tickInfo.difficulty_grade]}</option>
                   {gradesArray.map(grade => {
                     if (route.route_type === "Sport") {
@@ -65,7 +64,7 @@ export default function EditTickModal({ show, onCloseEditModal, route, updatedRa
                       className={i <= (updateTickStarHoverState) ? "on" : "off"}
                       onMouseEnter={() => setUpdateTickStarHoverState(i)}
                       onMouseLeave={() => updatedRating < 0 ? setUpdateTickStarHoverState(-1) : setUpdateTickStarHoverState(updatedRating)}
-                      onClick={() => setUpdatedRating(i)}
+                      onClick={() => setUpdatedRating(i + 1)}
                     >
                       <Star />
                     </button>

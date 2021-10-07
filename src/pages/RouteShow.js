@@ -10,7 +10,6 @@ import EditTickModal from "../components/EditTickModal";
 // component
 export default function RouteShow({ match, gyms, getGyms }) {
 
-    // FIX THIS
     const gradesArray = [];
 
     // state for add tick (addTick.js)
@@ -34,6 +33,10 @@ export default function RouteShow({ match, gyms, getGyms }) {
     // show edit modal
     const handleClickForEditModal = (tick) => {
         setTickInfo(tick);
+        console.log(tickInfo);
+        setUpdatedRating(tick.quality_rating)
+        setUpdatedGradeSelection(tick.difficulty_grade);
+        setUpdatedComment(tick.comment);
         setShowEditModal({
             show: true
         })
@@ -207,8 +210,8 @@ export default function RouteShow({ match, gyms, getGyms }) {
                 </div>
             </>
         )
-    }
+    };
 
     // if gyms, return loaded, else return loading
     return gyms ? loaded() : loading();
-}
+};
