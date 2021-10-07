@@ -127,7 +127,7 @@ export default function RouteShow({ match, gyms, getGyms }) {
         // build grades array for dropdown in AddTick & EditTickModal
         const buildGradesArray = () => {
             if (route.consensus_grade) {
-                for (var i = route.consensus_grade - 5; i <= route.consensus_grade + 5; i++) {
+                for (var i = route.consensus_grade - 3; i <= route.consensus_grade + 3; i++) {
                     gradesArray.push(i);
                 }
             }

@@ -23,16 +23,18 @@ export default function AddTick({ route, rating, setRating, hoverState, setHover
             <select value={gradeSelection} onChange={handleChange}>
               <option selected>Select a grade</option>
               {gradesArray.map(grade => {
-                if (route.route_type === "Sport") {
-                  return <option
-                    value={grade}
-                    key={grade}
-                  >{yosemiteGrades[grade]}</option>
-                }
-                if (route.route_type === "Boulder") {
-                  return <option
-                    value={grade}
-                    key={grade}>{huecoGrades[grade]}</option>
+                if (grade >= 1 && grade <= 30) {
+                  if (route.route_type === "Sport") {
+                    return <option
+                      value={grade}
+                      key={grade}
+                    >{yosemiteGrades[grade]}</option>
+                  }
+                  if (route.route_type === "Boulder") {
+                    return <option
+                      value={grade}
+                      key={grade}>{huecoGrades[grade]}</option>
+                  }
                 }
               })}
             </select>
