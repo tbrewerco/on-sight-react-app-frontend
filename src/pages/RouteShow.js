@@ -13,15 +13,15 @@ export default function RouteShow({ match, gyms, getGyms }) {
     const gradesArray = [];
 
     // state for add tick (addTick.js)
-    const [rating, setRating] = useState(-1);
+    const [rating, setRating] = useState(null);
     const [gradeSelection, setGradeSelection] = useState(null);
-    const [comment, setComment] = useState('');
+    const [comment, setComment] = useState(null);
     const [hoverState, setHoverState] = useState(-1);
 
     //state for update tick (editTickModal.js)
-    const [updatedRating, setUpdatedRating] = useState(-1)
-    const [updatedGradeSelection, setUpdatedGradeSelection] = useState(-1)
-    const [updatedComment, setUpdatedComment] = useState('')
+    const [updatedRating, setUpdatedRating] = useState(null)
+    const [updatedGradeSelection, setUpdatedGradeSelection] = useState(null)
+    const [updatedComment, setUpdatedComment] = useState(null)
     const [showEditModal, setShowEditModal] = useState(
         {
             show: false
@@ -33,7 +33,6 @@ export default function RouteShow({ match, gyms, getGyms }) {
     // show edit modal
     const handleClickForEditModal = (tick) => {
         setTickInfo(tick);
-        console.log(tickInfo);
         setUpdatedRating(tick.quality_rating)
         setUpdatedGradeSelection(tick.difficulty_grade);
         setUpdatedComment(tick.comment);
@@ -44,6 +43,10 @@ export default function RouteShow({ match, gyms, getGyms }) {
 
     // close edit modal
     const onCloseEditModal = (e) => {
+        setUpdatedRating(null)
+        setUpdatedGradeSelection(null);
+        setUpdatedComment(null);
+        setUpdateTickStarHoverState(-1)
         setShowEditModal({
             show: false
         })
@@ -53,7 +56,6 @@ export default function RouteShow({ match, gyms, getGyms }) {
 
     // create tick
     const createTick = async (newTick) => {
-        console.log(newTick)
         await fetch(URL, {
             method: "PATCH",
             headers: {
@@ -81,7 +83,7 @@ export default function RouteShow({ match, gyms, getGyms }) {
     let newTick = {
         difficulty_grade: gradeSelection,
         comment: comment,
-        quality_rating: rating + 1
+        quality_rating: (rating ? rating : null)
     };
 
     // set updated tick data to update
@@ -95,7 +97,7 @@ export default function RouteShow({ match, gyms, getGyms }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         createTick(newTick);
-        setRating(-1)
+        setRating(null);
         setGradeSelection(null);
         setComment('');
         setHoverState(-1);
@@ -127,7 +129,7 @@ export default function RouteShow({ match, gyms, getGyms }) {
         // build grades array for dropdown in AddTick & EditTickModal
         const buildGradesArray = () => {
             if (route.consensus_grade) {
-                for (var i = route.consensus_grade - 5; i <= route.consensus_grade + 5; i++) {
+                for (var i = route.consensus_grade - 3; i <= route.consensus_grade + 3; i++) {
                     gradesArray.push(i);
                 }
             }

@@ -20,9 +20,9 @@ export default function TickList({ tick, route, starColor, match, getGyms, handl
 
   // converts numerical userGrade to appropriate non-numerical grade, based on route type
   if (route.route_type === "Sport") {
-    tick.userGrade = yosemiteGrades[tick.difficulty_grade] || "Unknown";
+    tick.userGrade = yosemiteGrades[tick.difficulty_grade] || "None selected";
   } else if (route.route_type === "Boulder") {
-    tick.userGrade = huecoGrades[tick.difficulty_grade] || "Unknown";
+    tick.userGrade = huecoGrades[tick.difficulty_grade] || "None selected";
   } else {
     tick.userGrade = "N/A";
   }

@@ -26,20 +26,22 @@ export default function EditTickModal({ show, onCloseEditModal, route, updatedRa
             <div className="addTick-top-row">
               <div className="DropDown">
                 <span className="howDifficult">How difficult was this route? </span>
-                <select defaultValue={tickInfo.difficulty_grade} value={updatedGradeSelection} onChange={handleChange}>
+                <select value={updatedGradeSelection} onChange={handleChange}>
                   {/* dynamically set default option to user's previous option */}
-                  <option value={tickInfo.difficulty_grade} >{route.route_type === "Sport" ? yosemiteGrades[tickInfo.difficulty_grade] : huecoGrades[tickInfo.difficulty_grade]}</option>
+                  <option selected value={tickInfo.difficulty_grade} >{route.route_type === "Sport" ? yosemiteGrades[tickInfo.difficulty_grade] : huecoGrades[tickInfo.difficulty_grade]}</option>
                   {gradesArray.map(grade => {
-                    if (route.route_type === "Sport") {
-                      return <option
-                        value={grade}
-                        key={grade}
-                      >{yosemiteGrades[grade]}</option>
-                    }
-                    if (route.route_type === "Boulder") {
-                      return <option
-                        value={grade}
-                        key={grade}>{huecoGrades[grade]}</option>
+                    if (grade >= 1 && grade <= 30) {
+                      if (route.route_type === "Sport") {
+                        return <option
+                          value={grade}
+                          key={grade}
+                        >{yosemiteGrades[grade]}</option>
+                      }
+                      if (route.route_type === "Boulder") {
+                        return <option
+                          value={grade}
+                          key={grade}>{huecoGrades[grade]}</option>
+                      }
                     }
                   })}
                 </select>
@@ -63,7 +65,7 @@ export default function EditTickModal({ show, onCloseEditModal, route, updatedRa
                       key={i}
                       className={i <= (updateTickStarHoverState) ? "on" : "off"}
                       onMouseEnter={() => setUpdateTickStarHoverState(i)}
-                      onMouseLeave={() => updatedRating < 0 ? setUpdateTickStarHoverState(-1) : setUpdateTickStarHoverState(updatedRating)}
+                      onMouseLeave={() => updatedRating < 0 || null ? setUpdateTickStarHoverState(1) : setUpdateTickStarHoverState(updatedRating - 1)}
                       onClick={() => setUpdatedRating(i + 1)}
                     >
                       <Star />
