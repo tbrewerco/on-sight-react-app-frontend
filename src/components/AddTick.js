@@ -20,8 +20,8 @@ export default function AddTick({ route, rating, setRating, hoverState, setHover
         <div className="addTick-top-row">
           <div className="DropDown">
             <span className="howDifficult">How difficult was this route? </span>
-            <select defaultValue={NaN} value={gradeSelection} onChange={handleChange}>
-              <option value={NaN} >Select a Grade</option>
+            <select value={gradeSelection} onChange={handleChange}>
+              <option selected>Select a grade</option>
               {gradesArray.map(grade => {
                 if (route.route_type === "Sport") {
                   return <option

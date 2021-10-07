@@ -10,12 +10,11 @@ import EditTickModal from "../components/EditTickModal";
 // component
 export default function RouteShow({ match, gyms, getGyms }) {
 
-    // FIX THIS
     const gradesArray = [];
 
     // state for add tick (addTick.js)
     const [rating, setRating] = useState(-1);
-    const [gradeSelection, setGradeSelection] = useState(-1);
+    const [gradeSelection, setGradeSelection] = useState(null);
     const [comment, setComment] = useState('');
     const [hoverState, setHoverState] = useState(-1);
 
@@ -34,6 +33,10 @@ export default function RouteShow({ match, gyms, getGyms }) {
     // show edit modal
     const handleClickForEditModal = (tick) => {
         setTickInfo(tick);
+        console.log(tickInfo);
+        setUpdatedRating(tick.quality_rating)
+        setUpdatedGradeSelection(tick.difficulty_grade);
+        setUpdatedComment(tick.comment);
         setShowEditModal({
             show: true
         })
@@ -93,7 +96,7 @@ export default function RouteShow({ match, gyms, getGyms }) {
         e.preventDefault();
         createTick(newTick);
         setRating(-1)
-        setGradeSelection(-1);
+        setGradeSelection(null);
         setComment('');
         setHoverState(-1);
     };
@@ -103,7 +106,7 @@ export default function RouteShow({ match, gyms, getGyms }) {
         e.preventDefault();
         editTick(updatedTick);
         setUpdatedRating(0)
-        setUpdatedGradeSelection(-1);
+        setUpdatedGradeSelection(null);
         setUpdatedComment('');
         setHoverState(-1);
         onCloseEditModal();
@@ -207,8 +210,8 @@ export default function RouteShow({ match, gyms, getGyms }) {
                 </div>
             </>
         )
-    }
+    };
 
     // if gyms, return loaded, else return loading
     return gyms ? loaded() : loading();
-}
+};
