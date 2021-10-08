@@ -25,13 +25,23 @@ export default function GymSearch({ gyms, getLocation, getGyms }) {
     getGyms(null, null, nameSearchForm)
   }
 
+  const searchByLocation = () => {
+    return (
+      <>
+        <div className="zipSearchButtonContainer">
+          <Button onClick={getLocation}>Use your location</Button>
+        </div>
+        <div className="orContainer">
+          <span className="orDivider">or...</span>
+          <hr></hr>
+        </div>
+      </>
+    )
+  }
+
   const searchByZip = () => {
     return (
-      <div className="findYourGym">
-        <h1 className="findYourGymText">Find Your Gym</h1>
-        <Button onClick={getLocation}>Use your location</Button>
-        <span className="orDivider">or...</span>
-        <hr></hr>
+      <>
         <div className="zipSearchContainer">
           <form action="" className="zipSearchForm" onSubmit={handleSubmit}>
             <input
@@ -43,29 +53,35 @@ export default function GymSearch({ gyms, getLocation, getGyms }) {
             />
             <br />
           </form>
+        </div>
+        <div className="orContainer">
           <span className="orDivider">or...</span>
           <hr></hr>
         </div>
-      </div>
+      </>
     )
   }
 
   const searchByName = () => {
     return (
-      <div className="gymNameSearchContainer">
-        <form className="gymNameSearchForm" action="" onSubmit={handleSubmitSearchByGymName}>
-          <input
-            placeholder="Search by gym name..."
-            type="text"
-            name="zip"
-            value={nameSearchForm}
-            onChange={handleNameFormChange}
-          />
-          <br />
-        </form>
-        <span className="orDivider">or...</span>
-        <hr></hr>
-      </div>
+      <>
+        <div className="gymNameSearchContainer">
+          <form className="gymNameSearchForm" action="" onSubmit={handleSubmitSearchByGymName}>
+            <input
+              placeholder="Search by gym name..."
+              type="text"
+              name="zip"
+              value={nameSearchForm}
+              onChange={handleNameFormChange}
+            />
+            <br />
+          </form>
+        </div>
+        <div className="orContainer">
+          <span className="orDivider">or...</span>
+          <hr></hr>
+        </div>
+      </>
     )
   }
 
@@ -108,6 +124,10 @@ export default function GymSearch({ gyms, getLocation, getGyms }) {
 
   return (
     <section>
+      <div className="findYourGymHeader">
+        <h1 className="findYourGymText">Find Your Gym</h1>
+      </div>
+      {searchByLocation()}
       {searchByZip()}
       {searchByName()}
       {gyms ? loaded() : loading()}
