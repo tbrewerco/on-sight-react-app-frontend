@@ -21,8 +21,8 @@ export default function GymSearch({ gyms, getLocation, getGyms }) {
     setNameSearchForm(value);
   }
 
-  const handleSubmitSearchByGymName = () => {
-
+  const handleSubmitSearchByGymName = (event) => {
+    getGyms(null, null, nameSearchForm)
   }
 
   const searchByZip = () => {
