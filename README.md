@@ -28,7 +28,7 @@ The OF version allows climbing gym operators to do the following:
 ## ERD
 
 
-- ![screenshot](images/onsight-erd.png)
+- ![screenshot](images/On.Sight ERD.png)
 
 
 ## Wireflows

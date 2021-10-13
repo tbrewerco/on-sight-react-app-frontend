@@ -20,9 +20,9 @@ export default function TickList({ tick, route, starColor, match, getGyms, handl
 
   // converts numerical userGrade to appropriate non-numerical grade, based on route type
   if (route.route_type === "Sport") {
-    tick.userGrade = yosemiteGrades[tick.difficulty_grade] || "None selected";
+    tick.userGrade = yosemiteGrades[tick.difficulty_grade] || "none selected";
   } else if (route.route_type === "Boulder") {
-    tick.userGrade = huecoGrades[tick.difficulty_grade] || "None selected";
+    tick.userGrade = huecoGrades[tick.difficulty_grade] || "none selected";
   } else {
     tick.userGrade = "N/A";
   }
@@ -41,7 +41,7 @@ export default function TickList({ tick, route, starColor, match, getGyms, handl
 
   return (
     <>
-      <p>Username goes here {tick.createdBy} - difficulty: {tick.userGrade} - quality rating: {tickStarsArray.map(star => { return <StarRateRoundedIcon className="on" /> })}comment: "{tick.comment}" - date added: {tick.createdAt.slice(0, 10)}</p>
+      <p>Username goes here {tick.createdBy} - Grade: {tick.userGrade} - Quality: {tickStarsArray.length > 0 ? tickStarsArray.map(star => { return <StarRateRoundedIcon className="on" /> }) : "no rating selected"} Comment: {tick.comment || "no comment"} - Date Added: {tick.createdAt.slice(0, 10)}</p>
       <br />
       <button type="button" onClick={e => {
         handleClickForEditModal(tick);

@@ -13,7 +13,7 @@ export default function App() {
   useEffect(() => getGyms(), []);
 
   // create req.query url
-  const getGymUrl = (base, position, zipCode) => {
+  const getGymUrl = (base, position, zipCode, searchParams) => {
     base = base + '?'
     if (position) {
       base = base + `lat=${position.coords.latitude}&long=${position.coords.longitude}`
@@ -21,13 +21,16 @@ export default function App() {
     if (zipCode) {
       base = base + `zipCode=${zipCode}`
     };
+    if (searchParams) {
+      base = base + `search=${searchParams}`
+    };
     return base;
   };
 
   // get data
-  const getGyms = async (position, zipCode) => {
+  const getGyms = async (position, zipCode, searchParams) => {
     try {
-      const gymUrl = getGymUrl(URL, position, zipCode)
+      const gymUrl = getGymUrl(URL, position, zipCode, searchParams)
       const response = await fetch(gymUrl);
       let data = await response.json();
       setGyms(data);
