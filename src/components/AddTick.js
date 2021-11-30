@@ -51,7 +51,7 @@ export default function AddTick({ route, rating, setRating, hoverState, setHover
               </OverlayTrigger>
             </div>
             {/* star rating */}
-          </div><span>Did you like the route</span><span>? Not so much</span>
+          </div><span>Did you like the route?</span><span>not so much</span>
           <div className="starRatingDiv">
             {[...Array(5)].map((star, i) => (
               <div className="starButton">
@@ -68,7 +68,7 @@ export default function AddTick({ route, rating, setRating, hoverState, setHover
               </div>
             ))}
           </div>
-          <span>Loved it!</span>
+          <span>loved it!</span>
         </div>
         <div className="commentText">
           <textarea

@@ -156,8 +156,12 @@ export const StyledMain = styled.main`
 }
 .on {
   color: #e3cc24;
+  background-color: black;
+  border: none;
 }
 .off {
+    background-color: black;
+    border: none;
   color: #bababa;
 }
     .starRatingDiv {
