@@ -40,13 +40,13 @@ export default function TickList({ tick, route, starColor, match, getGyms, handl
   }
 
   return (
-    <>
+    <div className="tick">
       <p>Username goes here {tick.createdBy} - Grade: {tick.userGrade} - Quality: {tickStarsArray.length > 0 ? tickStarsArray.map(star => { return <StarRateRoundedIcon className="on" /> }) : "no rating selected"} Comment: {tick.comment || "no comment"} - Date Added: {tick.createdAt.slice(0, 10)}</p>
       <br />
       <button type="button" onClick={e => {
         handleClickForEditModal(tick);
       }}>Edit your send</button>
       <button type="button" onClick={deleteTick}>Delete your send</button>
-    </>
+    </div>
   )
 }
