@@ -1,31 +1,40 @@
 import styled from "styled-components";
 
 export const StyledLayout = styled.div`
-    /* display: flex;
+    display: flex;
     flex-direction: column;
     min-height: 100vh;
-    font-family: 'Montserrat', sans-serif; */
+    font-family: 'Montserrat', sans-serif;
 `;
 
 export const StyledMain = styled.main`
-    /* flex-grow: 1;   
+ flex-grow: 1;   
     display: flex;
+    flex-direction: column;
+    /* flex-flow: center; */
     justify-content: center;
     background-color: black;
     margin-top: 7px;
     color: white;
-    max-height: 700px; */
-    /* .route {
+    /* max-height: 700px;  */
+    /* justify-content: space-between; */
+  .route {
         display: flex;
-        flex-direction: row;
-        padding: 50px;
+        flex-direction: column;
+        padding: 10px;
         justify-content: space-between;
         align-items: center;
     }
+    .tick {
+        padding: 10px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
     .routeInfo {
+        align-items: center;
         display: flex;
         flex-direction: column;
-        Padding: 30px;
+        padding: 30px;
     }
     .gymSearch {
         display: flex;
@@ -58,9 +67,24 @@ export const StyledMain = styled.main`
     }
     .DropDown {
         display: flex;
-        flex-direction: column;
-        margin: 4rem;
+        flex-direction: row;
+        margin: 2rem;
         padding: 30px;
+        align-items: center;
+        align-content: center;
+        .tooltip2 {
+            padding: 10px
+            display: flex;
+            flex-direction: column;
+            align-content: flex-start;
+            border-radius: 15px;
+            align-items: center;
+            /* width: 10px; */
+        }
+        .select {
+            padding: 10px;
+        }
+
     }
     .findYourGym{
         display: flex;
@@ -141,6 +165,8 @@ export const StyledMain = styled.main`
     }
     .addTick-top-row {
         display: flex;
+        align-items: center;
+        align-content: space-around;
     }
     .modalContainer {
         position: fixed;
@@ -200,7 +226,7 @@ export const StyledHeader = styled.header`
 
 export const StyledFooter = styled.footer`
     display: flex;
-    height: 50px;
+    height: 10px;
     justify-content: center;
     align-items: center;
     p {

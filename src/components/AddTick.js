@@ -39,15 +39,17 @@ export default function AddTick({ route, rating, setRating, hoverState, setHover
               })}
             </select>
             {/* Tooltip */}
-            <OverlayTrigger
-              placement="right"
-              overlay={<Tooltip id="tooltip">You may select a grade of up to five grades higher or five grades lower than the current "consensus grade"</Tooltip>}>
-              <Button
-                variant="light"
-                className="d-inline-flex align-items-center">
-                <span className="ms-1">{<InfoRoundedIcon />}</span>
-              </Button>
-            </OverlayTrigger>
+            <div className="tooltip2">
+              <OverlayTrigger
+                placement="right"
+                overlay={<Tooltip id="tooltip">You may select a grade of up to five grades higher or five grades lower than the current "consensus grade"</Tooltip>}>
+                <Button
+                  variant="light"
+                  className="d-inline-flex align-items-center">
+                  <span className="ms-1">{<InfoRoundedIcon />}</span>
+                </Button>
+              </OverlayTrigger>
+            </div>
             {/* star rating */}
           </div><span>Did you like the route</span><span>? Not so much</span>
           <div className="starRatingDiv">
