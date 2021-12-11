@@ -39,8 +39,8 @@ export const StyledMain = styled.main`
     .gymSearch {
         display: flex;
         flex-direction: column;
-        align-items: baseline;
-        margin: 20px;
+        align-items: center;
+        margin: 10px;
         justify-content: space-between;
     }
     .gymSearchComp {
@@ -72,7 +72,7 @@ export const StyledMain = styled.main`
         padding: 30px;
         align-items: center;
         align-content: center;
-        .tooltip2 {
+        /* .tooltip2 {
             padding: 10px
             display: flex;
             flex-direction: column;
@@ -80,7 +80,7 @@ export const StyledMain = styled.main`
             border-radius: 15px;
             align-items: center;
             /* width: 10px; */
-        }
+        } */
         .select {
             padding: 10px;
         }
@@ -108,7 +108,7 @@ export const StyledMain = styled.main`
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 50px;
+        margin: 2rem;
     }
     .gymShowComp {
         display: flex;

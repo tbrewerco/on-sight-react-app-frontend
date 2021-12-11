@@ -28,6 +28,39 @@ body {
     box-shadow: 0 0 2.5px #919191;
 }
 
+.d-inline-flex.align-items-center.btn.btn-light {
+    display: flex;
+    align-items: center;
+    border-radius: 40px;
+    padding: 1px;
+    border: 0.1px;
+    margin: 10px;
+    background-color: black;
+}
+
+.ms-1 {
+    color: rgb(171, 170, 169);
+    background-color: black;
+}
+
+.DropDownGymSearch {
+    display: flex;
+    /* align-items: baseline; */
+    margin: 2rem;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.gymSearchGymName {
+    margin: 10px;
+}
+
+.gymAddress {
+    display: flex;
+    margin: 10px;
+}
+
 .commentButton {
     color: white;
     margin: 10px;

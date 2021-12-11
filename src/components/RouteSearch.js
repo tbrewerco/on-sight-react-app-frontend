@@ -9,9 +9,9 @@ export default function RouteSearch({ gym }) {
 
   const loaded = () => {
     return (
-      <div className="DropDown">
-        <h1>{gym.name}</h1>
-        <p>{gym.address[0].streetAddress}</p>
+      <div className="DropDownGymSearch">
+        <h1 className="gymSearchGymName">{gym.name}</h1>
+        <p className="gymAddress">{gym.address[0].streetAddress}</p>
         <Dropdown>
           <Dropdown.Toggle id="dropdown-button-dark-example1" variant="dark">Select a Route</Dropdown.Toggle>
           <Dropdown.Menu variant="dark">
