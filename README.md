@@ -25,12 +25,6 @@ The OF version allows climbing gym operators to do the following:
 - ![screenshot](images/3.png) -->
 
 
-## Wireflows
-
-
-- ![screenshot](images/wireflow.png)
-
-
 ## Technologies
 - Javascript
 - MongoDB / MongooseJS
