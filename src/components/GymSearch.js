@@ -62,28 +62,28 @@ export default function GymSearch({ gyms, getLocation, getGyms }) {
     )
   }
 
-  const searchByName = () => {
-    return (
-      <>
-        <div className="gymNameSearchContainer">
-          <form className="gymNameSearchForm" action="" onSubmit={handleSubmitSearchByGymName}>
-            <input
-              placeholder="Search by gym name..."
-              type="text"
-              name="zip"
-              value={nameSearchForm}
-              onChange={handleNameFormChange}
-            />
-            <br />
-          </form>
-        </div>
-        <div className="orContainer">
-          <span className="orDivider">or...</span>
-          <hr></hr>
-        </div>
-      </>
-    )
-  }
+  // const searchByName = () => {
+  //   return (
+  //     <>
+  //       <div className="gymNameSearchContainer">
+  //         <form className="gymNameSearchForm" action="" onSubmit={handleSubmitSearchByGymName}>
+  //           <input
+  //             placeholder="Search by gym name..."
+  //             type="text"
+  //             name="zip"
+  //             value={nameSearchForm}
+  //             onChange={handleNameFormChange}
+  //           />
+  //           <br />
+  //         </form>
+  //       </div>
+  //       <div className="orContainer">
+  //         <span className="orDivider">or...</span>
+  //         <hr></hr>
+  //       </div>
+  //     </>
+  //   )
+  // }
 
   const loaded = () => {
 
@@ -129,7 +129,7 @@ export default function GymSearch({ gyms, getLocation, getGyms }) {
       </div>
       {searchByLocation()}
       {searchByZip()}
-      {searchByName()}
+      {/* {searchByName()} */}
       {gyms ? loaded() : loading()}
     </section>
   );

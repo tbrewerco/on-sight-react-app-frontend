@@ -12,12 +12,12 @@ export default function Header(props) {
             </Link>
             <nav className="nav">
                 <ul>
-                    <li>
+                    {/* <li>
                         <Link to="/routes">
                             <div>Select a Route</div>
                         </Link>
-                    </li>
-                    <li>
+                    </li> */}
+                    {/* <li>
                         <Link to="/login">
                             <div>Login</div>
                         </Link>
@@ -31,7 +31,7 @@ export default function Header(props) {
                         <Link to="/logout">
                             <div>Logout</div>
                         </Link>
-                    </li>
+                    </li> */}
 
                 </ul>
             </nav>
