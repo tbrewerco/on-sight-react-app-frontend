@@ -1,15 +1,15 @@
 # On.Sight Climber's App
 
 
-On.Sight is a climbing gym application that features a public-facing (PF) version for climbing gym users and an operator-facing (OF) version for gym operators. 
+On.Sight is a climbing gym application that features a public-facing version for climbing gym users and an operator-facing version for gym operators. 
 
-The PF version will allow climbing gym users to do the following:
+The public-facing version will allow climbing gym users to do the following:
 
 - Search for their favorite climbing gyms
 - Rate the difficulty and quality of climbing routes 
 - Share comments, beta, and pictures relating to the route
   
-The OF version allows climbing gym operators to do the following:
+The operator-facing version allows climbing gym operators to do the following:
 
 - Post Gym details and climbing routes to a database. 
 - Manage gym operations (inventory, payroll, scheduling, income, expenses, etc.) 
