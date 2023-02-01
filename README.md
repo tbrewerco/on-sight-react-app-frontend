@@ -15,14 +15,14 @@ The OF version allows climbing gym operators to do the following:
 - Manage gym operations (inventory, payroll, scheduling, income, expenses, etc.) 
 
 
-<!-- ## Screenshots
+## Screenshots
 
 
 - ![screenshot](images/1.png)
   
 - ![screenshot](images/2.png)
   
-- ![screenshot](images/3.png) -->
+- ![screenshot](images/3.png)
 
 
 ## ERD
@@ -49,11 +49,6 @@ The OF version allows climbing gym operators to do the following:
 - haversine-distance
 - HTML Geolocation API
 - Zipcodes Zip Code Lookups
-
-## Getting Started
-
-
-[Click Here](https://on-sight-app-frontend.herokuapp.com/) to see functional app.
 
 
 ## Future Enhancements
